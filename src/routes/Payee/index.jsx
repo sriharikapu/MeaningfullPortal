@@ -96,7 +96,7 @@ export default class Payee extends Component {
             <Fragment key={month}>
               <StickyPeriodHeader>{month}</StickyPeriodHeader>
               {payments.map(({ address, max }) => (
-                <PaymentLine>
+                <PaymentLine key={address}>
                   <div>
                     <h4>{address}</h4>
                     <div className="text-muted">
