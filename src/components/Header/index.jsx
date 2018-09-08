@@ -18,6 +18,10 @@ export default class Header extends Component {
     isOpen: false
   };
 
+  toggle = () => {
+    this.setState(state => ({ ...state, isOpen: !state.isOpen }));
+  };
+
   render() {
     return (
       <Navbar color="light" light expand="md">
