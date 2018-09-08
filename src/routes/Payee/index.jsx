@@ -9,8 +9,13 @@ import {
   Container,
   Row
 } from "reactstrap";
-import styled from "styled-components";
 
+import {
+  Section,
+  StickyPeriodHeader,
+  LatePaymentLine,
+  PaymentLine
+} from "../../components/Styled/index";
 const months = [
   "September",
   "October",
@@ -30,26 +35,6 @@ const payments = [
     max: 0.5
   }
 ];
-
-const StickyPeriodHeader = styled.h3`
-  position: sticky;
-  top: 0;
-  background: #fff;
-  line-height: 50px;
-  border-bottom: 1px solid black;
-`;
-const PaymentLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0;
-`;
-const LatePaymentLine = styled(PaymentLine)``;
-
-const Section = styled.div`
-  padding: 30px 10px;
-  background: #ccc;
-`;
 
 export default class Payee extends Component {
   render() {
