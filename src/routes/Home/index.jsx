@@ -2,27 +2,78 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { drizzleConnect } from "drizzle-react";
 import { get } from "dot-prop";
+import { Button } from "reactstrap";
+import { utils } from "web3";
+import DepositModal from "./DepositModal";
+import WithdrawModal from "./WithdrawModal";
 
 class Home extends Component {
+  state = {
+    depositModalOpen: false,
+    withdrawModalOpen: false
+  };
+
   constructor(props, context) {
     super();
 
     this.contracts = context.drizzle.contracts;
   }
 
-  getData = (contract, method, defaultValue) => {
-    return get(
+  getData = (contract, method, defaultValue, mapping = a => a) => {
+    let value = get(
       this.props.contracts[contract][method][
         this.contracts[contract].methods[method].cacheCall()
       ],
-      "value",
-      defaultValue
+      "value"
     );
+
+    if (value === undefined) {
+      return defaultValue;
+    }
+
+    return mapping(value);
   };
 
+  toggleWithdraw = () => {
+    this.setState(state => ({
+      ...state,
+      withdrawModalOpen: !state.withdrawModalOpen
+    }));
+  };
+
+  toggleDeposit = () => {
+    this.setState(state => ({
+      ...state,
+      depositModalOpen: !state.depositModalOpen
+    }));
+  };
+
+  withdraw = () => {};
+
   render() {
-    const balance = this.getData("Ledger", "getDepositBalance", "Unknown");
-    return <div>Your Balance Is: {balance}</div>;
+    const balance = this.getData(
+      "Ledger",
+      "getDepositBalance",
+      "Unknown",
+      value => utils.fromWei(value)
+    );
+    return (
+      <div>
+        <div >
+        Your Balance Is: {balance}
+        </div>
+        <Button onClick={this.toggleWithdraw}>Withdraw</Button>
+        <Button onClick={this.toggleDeposit}>Deposit</Button>
+        <DepositModal
+          toggle={this.toggleDeposit}
+          open={this.state.depositModalOpen}
+        />
+        <WithdrawModal
+          toggle={this.toggleWithdraw}
+          open={this.state.withdrawModalOpen}
+        />
+      </div>
+    );
   }
 }
 

@@ -6,12 +6,11 @@ import {
   DropdownToggle,
   Nav,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   NavItem,
-  NavLink,
   UncontrolledDropdown
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   state = {
@@ -25,15 +24,21 @@ export default class Header extends Component {
   render() {
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Direct Debit</NavbarBrand>
+        <Link to="/" className="navbar-brand">
+          Direct Debit
+        </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/payee">Payee</NavLink>
+              <Link to="/payee" className="nav-link">
+                Payee
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/payer">Payer</NavLink>
+              <Link to="/payer" className="nav-link">
+                Payer
+              </Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
