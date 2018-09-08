@@ -85,7 +85,10 @@ class Payer extends Component {
       amountEther: utils.fromWei("" + amountWei)
     }));
     const allowancesByMonth = groupBy(
-      allowances.map(i => ({ ...i, month: moment(i.date).format("MMMM") })),
+      allowances.map(i => ({
+        ...i,
+        month: i.isDebt ? "Debt" : moment(i.date).format("MMMM")
+      })),
       "month"
     );
 
@@ -138,7 +141,15 @@ class Payer extends Component {
         <Container>
           {Object.keys(allowancesByMonth).map(month => (
             <Fragment>
-              <StickyPeriodHeader>{month}</StickyPeriodHeader>
+              <StickyPeriodHeader>
+                <span>{month}</span>
+                <span>
+                  {allowancesByMonth[month]
+                    .map(({ amountEther }) => amountEther)
+                    .reduce((a, b) => +a + +b, 0)}
+                  ETH
+                </span>
+              </StickyPeriodHeader>
               {allowancesByMonth[month].map(
                 ({
                   sideB,

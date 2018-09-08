@@ -44,6 +44,7 @@ export default class AllowanceForm extends Component {
           <input
             className="form-control"
             type="number"
+            step="0.000001"
             name="allowance"
             id="allowance"
             onChange={this.props.onInputChange}
@@ -58,7 +59,7 @@ export default class AllowanceForm extends Component {
             type="number"
             name="overdraft"
             id="overdraft"
-            step="0.01"
+            step="0.001"
             onChange={this.props.onInputChange}
             value={this.props.overdraft}
             min={0}
@@ -71,7 +72,7 @@ export default class AllowanceForm extends Component {
             type="number"
             name="interest"
             id="interest"
-            step="0.01"
+            step="0.001"
             onChange={this.props.onInputChange}
             value={this.props.interest}
             min={0}
@@ -105,8 +106,8 @@ export default class AllowanceForm extends Component {
                 />
                 <UnitSelection
                   type="select"
-                  id="selectPeriodUnit"
-                  name="selectPeriodUnit"
+                  id="periodUnit"
+                  name="periodUnit"
                   onChange={this.props.onInputChange}
                   value={this.props.periodUnit}
                 >
