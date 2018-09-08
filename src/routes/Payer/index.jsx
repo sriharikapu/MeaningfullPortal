@@ -1,24 +1,25 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
   Button,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  Container,
-  Row,
   Col,
+  Container,
   ListGroup,
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
-  Progress
+  Progress,
+  Row
 } from "reactstrap";
 
 import { Text } from "../../components/Styled/index";
 import { periodToUnit } from "../../utils";
+import BenefactorModal from "./BenefactorModal";
+import { Section } from "../../components/Styled";
+import { get } from "dot-prop";
+import PropTypes from "prop-types";
+import { drizzleConnect } from "drizzle-react";
+
 const BenefactorGroupItem = styled(ListGroupItem)`
   background-color: ${props => (props.isOverdrafted ? "#d9534f" : "inherit")};
   &:hover {
@@ -27,21 +28,8 @@ const BenefactorGroupItem = styled(ListGroupItem)`
 `;
 
 const BenefactorGroupItemText = styled(ListGroupItemText)`
-  margin-top: 0rem;
-  margin-bottom: 0rem;
-`;
-
-const NewBenefactorButton = styled(Button)`
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-`;
-
-const NiceLink = styled(Link)`
-  color: inherit;
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
+  margin-top: 0;
+  margin-bottom: 0;
 `;
 
 const OverdraftRow = styled(Row)`
@@ -82,43 +70,20 @@ const benefactors = [
     currentPeriod: 2,
     withdrawnAmounts: [53, 12]
   }
-  // {address: 'b3', amount: 'b3amount'},
-  // {address: 'b4', amount: 'b4amount'},
-  // {address: 'b5', amount: 'b5amount'},
-  // {address: 'b6', amount: 'b6amount'},
-  // {address: 'b7', amount: 'b7amount'},
-  // {address: 'b8', amount: 'b8amount'},
-  // {address: 'b9', amount: 'b9amount'},
 ];
-
-const addBtnClickHandler = evt => {
-  console.log("clicked");
-};
 
 const benefectorClickHander = address => {
   console.log("edit clicked ", address);
 };
 
-const benefactorApproveOverdraft = address => {
+const benefactorApproveOverdraft = () => {
   console.log("overdraftApproveClicked");
 };
 
-const AddBenefactor = props => {
-  return (
-    <Row>
-      <Col className="text-center">
-        <NewBenefactorButton color="primary">
-          <NiceLink to={`/payer/allowance`}>{"Add new Benefactor"}</NiceLink>
-        </NewBenefactorButton>
-      </Col>
-    </Row>
-  );
-};
-
-const BenefactorList = props => {
+const BenefactorList = ({ benefactors }) => {
   return (
     <ListGroup>
-      {props.benefactors.map((benefactor, idx) => {
+      {benefactors.map((benefactor, idx) => {
         return (
           <BenefactorItem
             key={benefactor.address}
@@ -127,12 +92,6 @@ const BenefactorList = props => {
             addFunc={benefectorClickHander}
             benefactorApproveOverdraft={benefactorApproveOverdraft}
           />
-          //   <ListGroupItem onClick={benefectorClickHander}>
-          //     <Link to={`/payer/benefactors/edit/${benefactor.address}`}>
-          //       {benefactor.address}
-          //     </Link>
-          //     {/* {benefactor.name} */}
-          //   </ListGroupItem>
         );
       })}
     </ListGroup>
@@ -210,13 +169,86 @@ const BenefactorItem = ({
   );
 };
 
-export default class Payer extends Component {
+class Payer extends Component {
+  state = {
+    benefactorModalOpen: false
+  };
+
+  constructor(props, context) {
+    super();
+
+    this.contracts = context.drizzle.contracts;
+  }
+
+  toggleBenefactorModal = () => {
+    this.setState(state => ({
+      ...state,
+      benefactorModalOpen: !state.benefactorModalOpen
+    }));
+  };
+
+  getData = (contract, method, defaultValue, mapping = a => a) => {
+    let value = get(
+      this.props.contracts[contract][method][
+        this.contracts[contract].methods[method].cacheCall()
+      ],
+      "value"
+    );
+
+    if (value === undefined) {
+      return defaultValue;
+    }
+
+    return mapping(value);
+  };
+
   render() {
+    const myAllowancesCount = this.getData("Ledger", "getMyAllowancesCount", 0);
     return (
-      <Container>
-        <AddBenefactor />
-        <BenefactorList benefactors={benefactors} />
-      </Container>
+      <div>
+        <Section>
+          <Container>
+            <Row>
+              <Col md={9} sm={6}>
+                <h2 className="display-4">Start Do things!</h2>
+              </Col>
+              <Col md="3" sm={6}>
+                <Button
+                  onClick={this.toggleBenefactorModal}
+                  color="primary"
+                  block
+                >
+                  Add Benefactor
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </Section>
+        myAllowancesCount: {myAllowancesCount}
+        <Container>
+          <Row>
+            <Col>
+              <BenefactorList benefactors={benefactors} />
+            </Col>
+          </Row>
+          <BenefactorModal
+            open={this.state.benefactorModalOpen}
+            toggle={this.toggleBenefactorModal}
+          />
+        </Container>
+      </div>
     );
   }
 }
+
+Payer.contextTypes = {
+  drizzle: PropTypes.object
+};
+
+const mapStateToProps = ({ contracts }) => {
+  return {
+    contracts
+  };
+};
+
+export default drizzleConnect(Payer, mapStateToProps);

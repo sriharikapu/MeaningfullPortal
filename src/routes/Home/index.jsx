@@ -6,7 +6,7 @@ import { Button, Col, Container, Row } from "reactstrap";
 import { utils } from "web3";
 import DepositModal from "./DepositModal";
 import WithdrawModal from "./WithdrawModal";
-import { PaymentLine, Section } from "../../components/Styled";
+import { Section } from "../../components/Styled";
 
 class Home extends Component {
   state = {

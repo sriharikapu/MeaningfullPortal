@@ -19,8 +19,12 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/payer" component={Payer} />
               <Route exact path="/payee" component={Payee} />
-		    <Route exact path="/payer/benefactors/edit/:bid" component={EditBenefactorForm} />
-		    <Route exact path="/payer/allowance" component={AllowanceForm} />
+              <Route
+                exact
+                path="/payer/benefactors/edit/:bid"
+                component={EditBenefactorForm}
+              />
+              <Route exact path="/payer/allowance" component={AllowanceForm} />
             </div>
           </div>
         </Router>
