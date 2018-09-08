@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { drizzleConnect } from "drizzle-react";
 import { get } from "dot-prop";
-import { Button } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 import { utils } from "web3";
 import DepositModal from "./DepositModal";
 import WithdrawModal from "./WithdrawModal";
+import { PaymentLine, Section } from "../../components/Styled";
 
 class Home extends Component {
   state = {
@@ -59,11 +60,37 @@ class Home extends Component {
     );
     return (
       <div>
-        <div >
-        Your Balance Is: {balance}
-        </div>
-        <Button onClick={this.toggleWithdraw}>Withdraw</Button>
-        <Button onClick={this.toggleDeposit}>Deposit</Button>
+        <Section>
+          <h2>My Balance</h2>
+          <Container>
+            <Row>
+              <Col md="9" sm="6">
+                <h1 className="display-3">
+                  {balance}
+                  ETH
+                </h1>
+              </Col>
+              <Col md="3" sm="6">
+                <Button
+                  onClick={this.toggleDeposit}
+                  block
+                  size="lg"
+                  color="primary"
+                >
+                  Deposit
+                </Button>
+                <Button
+                  onClick={this.toggleWithdraw}
+                  block
+                  size="lg"
+                  color="secondary"
+                >
+                  Withdraw
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </Section>
         <DepositModal
           toggle={this.toggleDeposit}
           open={this.state.depositModalOpen}
