@@ -45,6 +45,16 @@ class Payer extends Component {
     this.contracts = context.drizzle.contracts;
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    let different =
+      JSON.stringify({ props: nextProps, state: nextState }) !==
+      JSON.stringify({ props: this.props, state: this.state });
+    if (different) {
+      debugger;
+    }
+    return different;
+  }
+
   toggleBenefactorModal = () => {
     this.setState(state => ({
       ...state,
@@ -84,13 +94,20 @@ class Payer extends Component {
       date: new Date(startingDate * 1000),
       amountEther: utils.fromWei("" + amountWei)
     }));
-    const allowancesByMonth = groupBy(
-      allowances.map(i => ({
-        ...i,
-        month: i.isDebt ? "Debt" : moment(i.date).format("MMMM")
-      })),
-      "month"
+    let { debt, ...allowancesByMonth } = groupBy(
+      allowances
+        .map(i => ({
+          ...i,
+          month: moment(i.date).format("MMMM"),
+          year: moment(i.date).format("YYYY")
+        }))
+        .map(i => ({
+          ...i,
+          category: i.isDebt ? "debt" : `${i.year} ${i.month}`
+        })),
+      "category"
     );
+    debt = debt || [];
 
     return (
       <div>
@@ -113,10 +130,8 @@ class Payer extends Component {
             <Row>
               <Col md="6">
                 <Card body inverse color="info">
-                  <CardTitle>Allowances</CardTitle>
+                  <CardTitle>{myAllowancesCount} Allowances</CardTitle>
                   <CardText className="text-center">
-                    <span className="display-4">#{myAllowancesCount}</span>
-                    <span className="display-4"> | </span>
                     <span className="display-4">
                       {allowances
                         .map(({ amountEther }) => amountEther)
@@ -127,11 +142,15 @@ class Payer extends Component {
                 </Card>
               </Col>
               <Col md="6">
-                <Card body inverse color="danger">
-                  <CardTitle>Debt</CardTitle>
+                <Card body inverse color={debt.length ? "danger" : "info"}>
+                  <CardTitle>{debt.length} Debt</CardTitle>
                   <CardText className="text-center">
-                    <span className="display-4">2.15ETH</span>
-                    (FAKE)
+                    <span className="display-4">
+                      {debt
+                        .map(({ amountEther }) => amountEther)
+                        .reduce((a, b) => +a + +b, 0)}
+                      ETH
+                    </span>
                   </CardText>
                 </Card>
               </Col>
@@ -139,11 +158,58 @@ class Payer extends Component {
           </Container>
         </Section>
         <Container>
+          {!!debt.length && (
+            <Fragment>
+              <StickyPeriodHeader>
+                <span>Debt</span>
+              </StickyPeriodHeader>
+              {debt.map(
+                ({
+                  sideB,
+                  amountEther,
+                  overdraftPpm,
+                  interestRatePpm,
+                  periodSeconds,
+                  date
+                }) => (
+                  <Row key={sideB + amountEther + date}>
+                    <Col md={2}>
+                      <span className="display-4">
+                        {moment(date).format("Do")}
+                      </span>
+                    </Col>
+                    <Col md={8}>
+                      <AddressHeader>{sideB}</AddressHeader>
+                      <div className="text-muted">
+                        Max. {amountEther}
+                        ETH
+                      </div>
+                      <div className="text-muted">
+                        Overdraft {overdraftPpm / MILLION}%
+                      </div>
+                      <div className="text-muted">
+                        {interestRatePpm / MILLION}
+                        %/day Late interest fee
+                      </div>
+                      <div className="text-muted">
+                        {moment(date)
+                          .add(periodSeconds, "seconds")
+                          .fromNow()}
+                      </div>
+                    </Col>
+                    <Col md={2}>
+                      <Button color="secondary">Cancel</Button>
+                    </Col>
+                  </Row>
+                )
+              )}
+            </Fragment>
+          )}
           {Object.keys(allowancesByMonth).map(month => (
             <Fragment>
               <StickyPeriodHeader>
                 <span>{month}</span>
-                <span>
+                <span className="float-right">
                   {allowancesByMonth[month]
                     .map(({ amountEther }) => amountEther)
                     .reduce((a, b) => +a + +b, 0)}
@@ -207,8 +273,9 @@ Payer.contextTypes = {
 };
 
 const mapStateToProps = ({ contracts }) => {
+  const { synced, ...ledger } = contracts.Ledger;
   return {
-    contracts
+    contracts: { Ledger: ledger }
   };
 };
 

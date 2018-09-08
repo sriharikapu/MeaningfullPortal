@@ -20,6 +20,16 @@ class Home extends Component {
     this.contracts = context.drizzle.contracts;
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    let different =
+      JSON.stringify({ props: nextProps, state: nextState }) !==
+      JSON.stringify({ props: this.props, state: this.state });
+    if (different) {
+      debugger;
+    }
+    return different;
+  }
+
   getData = (contract, method, defaultValue, mapping = a => a) => {
     let value = get(
       this.props.contracts[contract][method][
@@ -109,8 +119,9 @@ Home.contextTypes = {
 };
 
 const mapStateToProps = ({ contracts }) => {
+  const { synced, ...ledger } = contracts.Ledger;
   return {
-    contracts
+    contracts: { Ledger: ledger }
   };
 };
 

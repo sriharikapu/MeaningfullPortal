@@ -6,6 +6,7 @@ export const StickyPeriodHeader = styled.h3`
   background: #fff;
   line-height: 50px;
   border-bottom: 1px solid black;
+  z-index: 99;
 `;
 export const PaymentLine = styled.div`
   display: flex;
