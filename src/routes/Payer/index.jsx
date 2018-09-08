@@ -1,7 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import {
   Button,
+  Card,
+  CardText,
+  CardTitle,
   Col,
   Container,
   ListGroup,
@@ -11,163 +14,25 @@ import {
   Progress,
   Row
 } from "reactstrap";
-
+import { utils } from "web3";
 import { Text } from "../../components/Styled/index";
-import { periodToUnit } from "../../utils";
+import { groupBy, MILLION, periodToUnit } from "../../utils";
 import BenefactorModal from "./BenefactorModal";
-import { Section } from "../../components/Styled";
+import {
+  PaymentLine,
+  Section,
+  StickyPeriodHeader
+} from "../../components/Styled";
 import { get } from "dot-prop";
 import PropTypes from "prop-types";
 import { drizzleConnect } from "drizzle-react";
+import moment from "moment";
 
-const BenefactorGroupItem = styled(ListGroupItem)`
-  background-color: ${props => (props.isOverdrafted ? "#d9534f" : "inherit")};
-  &:hover {
-  }
-  margin-bottom: 1rem;
+const AddressHeader = styled.h4`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
-
-const BenefactorGroupItemText = styled(ListGroupItemText)`
-  margin-top: 0;
-  margin-bottom: 0;
-`;
-
-const OverdraftRow = styled(Row)`
-  margin-top: 1rem;
-`;
-
-const ApproveText = styled(Button)`
-  padding: 0;
-  color: white;
-  &:hover {
-    color: gray;
-    text-decoration: none;
-  }
-`;
-
-const benefactors = [
-  {
-    address: "0xd515cFBE2C848bC9Daa5460DaE52425BFf54e4C0",
-    amount: 1.5 * 10 ** 18,
-    overdraftPpm: 10000,
-    interestRatePpm: 12000,
-    periodSeconds: 60 * 60 * 24 * 2,
-    startingDate: 1536375947,
-    isOverdrafted: true,
-    totalPeriods: 5,
-    currentPeriod: 4,
-    withdrawnAmounts: [53, 12, 52, 88]
-  },
-  {
-    address: "0x9CaFd2790b1EDB1c90600d76Ab6479540032e0C9",
-    amount: 13 * 10 ** 18,
-    overdraftPpm: 10000,
-    interestRatePpm: 12000,
-    periodSeconds: 60 * 60 * 24,
-    startingDate: 1536375947,
-    isOverdrafted: false,
-    totalPeriods: 6,
-    currentPeriod: 2,
-    withdrawnAmounts: [53, 12]
-  }
-];
-
-const benefectorClickHander = address => {
-  console.log("edit clicked ", address);
-};
-
-const benefactorApproveOverdraft = () => {
-  console.log("overdraftApproveClicked");
-};
-
-const BenefactorList = ({ benefactors }) => {
-  return (
-    <ListGroup>
-      {benefactors.map((benefactor, idx) => {
-        return (
-          <BenefactorItem
-            key={benefactor.address}
-            {...benefactor}
-            number={idx}
-            addFunc={benefectorClickHander}
-            benefactorApproveOverdraft={benefactorApproveOverdraft}
-          />
-        );
-      })}
-    </ListGroup>
-  );
-};
-
-const BenefactorItem = ({
-  address,
-  number,
-  amount,
-  periodSeconds,
-  isOverdrafted,
-  addFunc,
-  startingDate,
-  totalPeriods,
-  currentPeriod,
-  benefactorApproveOverdraft
-}) => {
-  return (
-    <BenefactorGroupItem
-      //   onClick={() => addFunc(address)}
-      isOverdrafted={isOverdrafted}
-    >
-      <ListGroupItemHeading>
-        <Row>
-          <Col md={9}>
-            #{number} Allowance to {address}
-          </Col>
-          <Col md={2}>
-            <Text>
-              {`For ${amount / 10 ** 18}
-              ETH`}
-            </Text>
-          </Col>
-        </Row>
-      </ListGroupItemHeading>
-      <BenefactorGroupItemText>
-        <Row>
-          <Col md={4}>
-            Every {periodToUnit(periodSeconds)} Since{" "}
-            {new Date(startingDate * 1000).toDateString()}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Progress animated max={totalPeriods} value={currentPeriod}>
-              {currentPeriod + "/" + totalPeriods}
-            </Progress>
-          </Col>
-        </Row>
-        <OverdraftRow>
-          {isOverdrafted ? (
-            <React.Fragment>
-              <Col md={3}>
-                <Text>
-                  <b>Overdraft Detected</b>
-                </Text>
-              </Col>
-              <Col md={1}>
-                <ApproveText
-                  color="link"
-                  onClick={() => benefactorApproveOverdraft(address)}
-                >
-                  {" "}
-                  Approve
-                </ApproveText>
-              </Col>
-            </React.Fragment>
-          ) : (
-            <Col size={4} />
-          )}
-        </OverdraftRow>
-      </BenefactorGroupItemText>
-    </BenefactorGroupItem>
-  );
-};
 
 class Payer extends Component {
   state = {
@@ -187,10 +52,10 @@ class Payer extends Component {
     }));
   };
 
-  getData = (contract, method, defaultValue, mapping = a => a) => {
+  getData = (contract, method, defaultValue, mapper = i => i, ...args) => {
     let value = get(
       this.props.contracts[contract][method][
-        this.contracts[contract].methods[method].cacheCall()
+        this.contracts[contract].methods[method].cacheCall(...args)
       ],
       "value"
     );
@@ -199,20 +64,40 @@ class Payer extends Component {
       return defaultValue;
     }
 
-    return mapping(value);
+    return mapper(value);
   };
 
   render() {
     const myAllowancesCount = this.getData("Ledger", "getMyAllowancesCount", 0);
+    let allowances = [];
+    for (let i = 0; i < myAllowancesCount; i++) {
+      this.getData(
+        "Ledger",
+        "getMyAllowanceInfo",
+        0,
+        i => allowances.push(i),
+        i
+      );
+    }
+    allowances = allowances.map(({ startingDate, amountWei, ...item }) => ({
+      ...item,
+      date: new Date(startingDate * 1000),
+      amountEther: utils.fromWei("" + amountWei)
+    }));
+    const allowancesByMonth = groupBy(
+      allowances.map(i => ({ ...i, month: moment(i.date).format("MMMM") })),
+      "month"
+    );
+
     return (
       <div>
         <Section>
           <Container>
             <Row>
-              <Col md={9} sm={6}>
-                <h2 className="display-4">Start Do things!</h2>
+              <Col sm={9}>
+                <h1 className="display-3">Welcome Payer!</h1>
               </Col>
-              <Col md="3" sm={6}>
+              <Col sm={3}>
                 <Button
                   onClick={this.toggleBenefactorModal}
                   color="primary"
@@ -222,20 +107,85 @@ class Payer extends Component {
                 </Button>
               </Col>
             </Row>
+            <Row>
+              <Col md="6">
+                <Card body inverse color="info">
+                  <CardTitle>Allowances</CardTitle>
+                  <CardText className="text-center">
+                    <span className="display-4">#{myAllowancesCount}</span>
+                    <span className="display-4"> | </span>
+                    <span className="display-4">
+                      {allowances
+                        .map(({ amountEther }) => amountEther)
+                        .reduce((a, b) => +a + +b, 0)}
+                      ETH
+                    </span>
+                  </CardText>
+                </Card>
+              </Col>
+              <Col md="6">
+                <Card body inverse color="danger">
+                  <CardTitle>Debt</CardTitle>
+                  <CardText className="text-center">
+                    <span className="display-4">2.15ETH</span>
+                    (FAKE)
+                  </CardText>
+                </Card>
+              </Col>
+            </Row>
           </Container>
         </Section>
-        myAllowancesCount: {myAllowancesCount}
         <Container>
-          <Row>
-            <Col>
-              <BenefactorList benefactors={benefactors} />
-            </Col>
-          </Row>
-          <BenefactorModal
-            open={this.state.benefactorModalOpen}
-            toggle={this.toggleBenefactorModal}
-          />
+          {Object.keys(allowancesByMonth).map(month => (
+            <Fragment>
+              <StickyPeriodHeader>{month}</StickyPeriodHeader>
+              {allowancesByMonth[month].map(
+                ({
+                  sideB,
+                  amountEther,
+                  overdraftPpm,
+                  interestRatePpm,
+                  periodSeconds,
+                  date
+                }) => (
+                  <Row key={sideB + amountEther + date}>
+                    <Col md={2}>
+                      <span className="display-4">
+                        {moment(date).format("Do")}
+                      </span>
+                    </Col>
+                    <Col md={8}>
+                      <AddressHeader>{sideB}</AddressHeader>
+                      <div className="text-muted">
+                        Max. {amountEther}
+                        ETH
+                      </div>
+                      <div className="text-muted">
+                        Overdraft {overdraftPpm / MILLION}%
+                      </div>
+                      <div className="text-muted">
+                        {interestRatePpm / MILLION}
+                        %/day Late interest fee
+                      </div>
+                      <div className="text-muted">
+                        {moment(date)
+                          .add(periodSeconds, "seconds")
+                          .fromNow()}
+                      </div>
+                    </Col>
+                    <Col md={2}>
+                      <Button color="secondary">Cancel</Button>
+                    </Col>
+                  </Row>
+                )
+              )}
+            </Fragment>
+          ))}
         </Container>
+        <BenefactorModal
+          open={this.state.benefactorModalOpen}
+          toggle={this.toggleBenefactorModal}
+        />
       </div>
     );
   }

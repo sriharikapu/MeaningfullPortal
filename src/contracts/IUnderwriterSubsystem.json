@@ -85,7 +85,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\r\n\r\ncontract ISideA {\r\n// 1 - deposit + withdraw\r\n\tfunction deposit() public payable;\r\n\tfunction getDepositBalance() public view returns(uint totalBalanceWei);\r\n\tfunction withdraw(uint _amountWei) public;\r\n\r\n// 2 - allowances that i set to some SideB\r\n\t// this will create _numberOfPeriods allowances\r\n\t// if you have created allowances before for sideB -> throw\r\n\tfunction allowAndDeposit(\r\n\t\taddress _sideB, \r\n\t\tuint _amountWei, \r\n\t\tuint _overdraftPpm, \r\n\t\tuint _interestRatePpm, \r\n\t\tuint _numberOfPeriods, \r\n\t\tuint _periodSeconds, \r\n\t\tuint _startingDate) public payable;\r\n\r\n\tfunction getMyAllowancesCount() public view returns(uint allowancesCount);\r\n\tfunction getMyAllowanceInfo(uint _index) public \r\n\t\tview returns(address sideB, uint amountWei, uint overdraftPpm, uint interestRatePpm, uint periodSeconds, uint startingDate);\r\n\t// edit each one \r\n\tfunction editMyAllowance(\r\n\t\tuint _index, \r\n\t\tuint _amountWei, \r\n\t\tuint _overdraftPpm, \r\n\t\tuint _interestRatePpm,\r\n\t\tuint _periodSeconds, \r\n\t\tuint _startingDate) public;\r\n\r\n// 3 - overdrafted flag\r\n\t// if you have asked for more than current AllowedAmount and less than AllowedAmount + overdraft\r\n\tfunction isOverdrafted(address _sideA, address _sideB) public view returns(bool overdrafted);\r\n\t// should be called by the SideA for the SideB\r\n\tfunction clearOverdraftedFlag(address _sideB) public;\r\n}\r\n\r\ncontract ISideB {\r\n\tfunction getAllowancesCount() public view returns(uint allowancesCount);\r\n\tfunction getAllowanceInfo(uint _index) public \r\n\t\tview returns(address sideA, uint amountWei, uint overdraftPpm, uint interestRatePpm, uint periodSeconds, uint startingDate);\r\n\t// only for 'transferrable allowances' that were generated automatically in case of overdraft\r\n\tfunction transferAllowance(uint _index, address _to) public;\r\n\r\n\t// will either return money OR \r\n\t// will return money + generate new allowance (plus interested) to the SideB (me)\r\n\tfunction charge(uint _index, uint _amountWei) public;\r\n}\r\n\r\ncontract IUnderwriterSubsystem {\r\n\t// SideA wants to add current underwriter. This will generate new underwriter request\r\n\tfunction addUnderwriterRequest(address _underwriter) public;\r\n\tfunction changeUnderwriter(address _newUnderwriter) public;\r\n\r\n\t// in order to become an underwriter SideB should accept that\r\n\tfunction getMyUnderwriterRequestsCount() public view returns(uint count);\r\n\tfunction getUnderwriterRequest(uint _index) public view returns(address sideB);\r\n\tfunction acceptUnderwriterRequest(address _sideA, address _sideB) public;\r\n}\r\n\r\n",
+  "source": "pragma solidity ^0.4.24;\r\n\r\ncontract ISideA {\r\n// 1 - deposit + withdraw\r\n\tfunction deposit() public payable;\r\n\tfunction getDepositBalance() public view returns(uint totalBalanceWei);\r\n\tfunction withdraw(uint _amountWei) public;\r\n\r\n// 2 - allowances that i set to some SideB\r\n\t// this will create _numberOfPeriods allowances\r\n\t// if you have created allowances before for sideB -> throw\r\n\tfunction allowAndDeposit(\r\n\t\taddress _sideB, \r\n\t\tuint _amountWei, \r\n\t\tuint _overdraftPpm, \r\n\t\tuint _interestRatePpm, \r\n\t\tuint _numberOfPeriods, \r\n\t\tuint _periodSeconds, \r\n\t\tuint _startingDate) public payable;\r\n\r\n\tfunction getMyAllowancesCount() public view returns(uint allowancesCount);\r\n\tfunction getMyAllowanceInfo(uint _index) public \r\n\t\tview returns(address sideB, uint amountWei, uint overdraftPpm, uint interestRatePpm, uint periodSeconds, uint startingDate);\r\n\t// edit each one \r\n\tfunction editMyAllowance(\r\n\t\tuint _index, \r\n\t\tuint _amountWei, \r\n\t\tuint _overdraftPpm, \r\n\t\tuint _interestRatePpm,\r\n\t\tuint _periodSeconds, \r\n\t\tuint _startingDate) public;\r\n\r\n// 3 - overdrafted flag\r\n\t// if you have asked for more than current AllowedAmount and less than AllowedAmount + overdraft\r\n\tfunction isOverdrafted(address _sideA, address _sideB) public view returns(bool overdrafted);\r\n\t// should be called by the SideA for the SideB\r\n\tfunction clearOverdraftedFlag(address _sideB) public;\r\n}\r\n\r\ncontract ISideB {\r\n\tfunction getAllowancesCount() public view returns(uint allowancesCount);\r\n\tfunction getAllowanceInfo(uint _index) public \r\n\t\tview returns(address sideA, uint amountWei, uint overdraftPpm, uint interestRatePpm, uint periodSeconds, uint startingDate);\r\n\t// only for 'transferrable allowances' that were generated automatically in case of overdraft\r\n\tfunction transferAllowance(uint _index, address _to) public;\r\n\r\n\t// will either return money OR \r\n\t// will return money + generate new allowance (plus interested) to the SideB (me)\r\n\tfunction charge(uint _index, uint _amountWei) public;\r\n\r\n\tfunction calculateAllowedPlusOverdraft(uint _index) public view returns(uint);\r\n}\r\n\r\ncontract IUnderwriterSubsystem {\r\n\t// SideA wants to add current underwriter. This will generate new underwriter request\r\n\tfunction addUnderwriterRequest(address _underwriter) public;\r\n\tfunction changeUnderwriter(address _newUnderwriter) public;\r\n\r\n\t// in order to become an underwriter SideB should accept that\r\n\tfunction getMyUnderwriterRequestsCount() public view returns(uint count);\r\n\tfunction getUnderwriterRequest(uint _index) public view returns(address sideB);\r\n\tfunction acceptUnderwriterRequest(address _sideA, address _sideB) public;\r\n}\r\n\r\n",
   "sourcePath": "D:\\Projects\\ETHBerlin\\TechnoDebit\\contracts\\ILedger.sol",
   "ast": {
     "absolutePath": "/D/Projects/ETHBerlin/TechnoDebit/contracts/ILedger.sol",
@@ -94,13 +94,13 @@
         83
       ],
       "ISideB": [
-        120
+        127
       ],
       "IUnderwriterSubsystem": [
-        150
+        157
       ]
     },
-    "id": 151,
+    "id": 158,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -1101,7 +1101,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 151,
+        "scope": 158,
         "src": "28:1349:0"
       },
       {
@@ -1110,9 +1110,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 120,
+        "id": 127,
         "linearizedBaseContracts": [
-          120
+          127
         ],
         "name": "ISideB",
         "nodeType": "ContractDefinition",
@@ -1167,7 +1167,7 @@
               ],
               "src": "1450:22:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1401:72:0",
             "stateMutability": "view",
             "superFunction": null,
@@ -1380,7 +1380,7 @@
               ],
               "src": "1538:111:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1476:174:0",
             "stateMutability": "view",
             "superFunction": null,
@@ -1462,7 +1462,7 @@
               "parameters": [],
               "src": "1808:0:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1749:60:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1544,169 +1544,33 @@
               "parameters": [],
               "src": "1984:0:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1932:53:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
-          }
-        ],
-        "scope": 151,
-        "src": "1381:607:0"
-      },
-      {
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "contract",
-        "documentation": null,
-        "fullyImplemented": false,
-        "id": 150,
-        "linearizedBaseContracts": [
-          150
-        ],
-        "name": "IUnderwriterSubsystem",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "body": null,
-            "documentation": null,
-            "id": 125,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "addUnderwriterRequest",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 123,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 122,
-                  "name": "_underwriter",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 125,
-                  "src": "2146:20:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 121,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2146:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2145:22:0"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 124,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2174:0:0"
-            },
-            "scope": 150,
-            "src": "2115:60:0",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
           },
           {
             "body": null,
             "documentation": null,
-            "id": 130,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "changeUnderwriter",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 128,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 127,
-                  "name": "_newUnderwriter",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 130,
-                  "src": "2205:23:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 126,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2205:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2204:25:0"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 129,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2236:0:0"
-            },
-            "scope": 150,
-            "src": "2178:59:0",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 135,
+            "id": 126,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
             "modifiers": [],
-            "name": "getMyUnderwriterRequestsCount",
+            "name": "calculateAllowedPlusOverdraft",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 131,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2344:2:0"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 134,
+              "id": 122,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 133,
-                  "name": "count",
+                  "id": 121,
+                  "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 135,
-                  "src": "2367:10:0",
+                  "scope": 126,
+                  "src": "2029:11:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1714,10 +1578,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 132,
+                    "id": 120,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2367:4:0",
+                    "src": "2029:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1727,11 +1591,174 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2366:12:0"
+              "src": "2028:13:0"
             },
-            "scope": 150,
-            "src": "2306:73:0",
+            "payable": false,
+            "returnParameters": {
+              "id": 125,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 124,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 126,
+                  "src": "2062:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 123,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2062:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2061:6:0"
+            },
+            "scope": 127,
+            "src": "1990:78:0",
             "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 158,
+        "src": "1381:690:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 157,
+        "linearizedBaseContracts": [
+          157
+        ],
+        "name": "IUnderwriterSubsystem",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 132,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "addUnderwriterRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 130,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 129,
+                  "name": "_underwriter",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 132,
+                  "src": "2229:20:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 128,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2229:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2228:22:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 131,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2257:0:0"
+            },
+            "scope": 157,
+            "src": "2198:60:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 137,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "changeUnderwriter",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 135,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 134,
+                  "name": "_newUnderwriter",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 137,
+                  "src": "2288:23:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 133,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2288:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2287:25:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 136,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2319:0:0"
+            },
+            "scope": 157,
+            "src": "2261:59:0",
+            "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
@@ -1743,40 +1770,13 @@
             "isConstructor": false,
             "isDeclaredConst": true,
             "modifiers": [],
-            "name": "getUnderwriterRequest",
+            "name": "getMyUnderwriterRequestsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 138,
               "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 137,
-                  "name": "_index",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 142,
-                  "src": "2413:11:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 136,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2413:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2412:13:0"
+              "parameters": [],
+              "src": "2427:2:0"
             },
             "payable": false,
             "returnParameters": {
@@ -1786,34 +1786,34 @@
                 {
                   "constant": false,
                   "id": 140,
-                  "name": "sideB",
+                  "name": "count",
                   "nodeType": "VariableDeclaration",
                   "scope": 142,
-                  "src": "2446:13:0",
+                  "src": "2450:10:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
                     "id": 139,
-                    "name": "address",
+                    "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2446:7:0",
+                    "src": "2450:4:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "2445:15:0"
+              "src": "2449:12:0"
             },
-            "scope": 150,
-            "src": "2382:79:0",
+            "scope": 157,
+            "src": "2389:73:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -1824,21 +1824,55 @@
             "id": 149,
             "implemented": false,
             "isConstructor": false,
-            "isDeclaredConst": false,
+            "isDeclaredConst": true,
             "modifiers": [],
-            "name": "acceptUnderwriterRequest",
+            "name": "getUnderwriterRequest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 147,
+              "id": 145,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 144,
-                  "name": "_sideA",
+                  "name": "_index",
                   "nodeType": "VariableDeclaration",
                   "scope": 149,
-                  "src": "2498:14:0",
+                  "src": "2496:11:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 143,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2496:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2495:13:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 148,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 147,
+                  "name": "sideB",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 149,
+                  "src": "2529:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1846,10 +1880,59 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 143,
+                    "id": 146,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2498:7:0",
+                    "src": "2529:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2528:15:0"
+            },
+            "scope": 157,
+            "src": "2465:79:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 156,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "acceptUnderwriterRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 154,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 151,
+                  "name": "_sideA",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 156,
+                  "src": "2581:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 150,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2581:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1860,11 +1943,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 146,
+                  "id": 153,
                   "name": "_sideB",
                   "nodeType": "VariableDeclaration",
-                  "scope": 149,
-                  "src": "2514:14:0",
+                  "scope": 156,
+                  "src": "2597:14:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1872,10 +1955,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 145,
+                    "id": 152,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2514:7:0",
+                    "src": "2597:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1885,27 +1968,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2497:32:0"
+              "src": "2580:32:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 148,
+              "id": 155,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2536:0:0"
+              "src": "2619:0:0"
             },
-            "scope": 150,
-            "src": "2464:73:0",
+            "scope": 157,
+            "src": "2547:73:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 151,
-        "src": "1992:548:0"
+        "scope": 158,
+        "src": "2075:548:0"
       }
     ],
-    "src": "0:2544:0"
+    "src": "0:2627:0"
   },
   "legacyAST": {
     "absolutePath": "/D/Projects/ETHBerlin/TechnoDebit/contracts/ILedger.sol",
@@ -1914,13 +1997,13 @@
         83
       ],
       "ISideB": [
-        120
+        127
       ],
       "IUnderwriterSubsystem": [
-        150
+        157
       ]
     },
-    "id": 151,
+    "id": 158,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -2921,7 +3004,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 151,
+        "scope": 158,
         "src": "28:1349:0"
       },
       {
@@ -2930,9 +3013,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 120,
+        "id": 127,
         "linearizedBaseContracts": [
-          120
+          127
         ],
         "name": "ISideB",
         "nodeType": "ContractDefinition",
@@ -2987,7 +3070,7 @@
               ],
               "src": "1450:22:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1401:72:0",
             "stateMutability": "view",
             "superFunction": null,
@@ -3200,7 +3283,7 @@
               ],
               "src": "1538:111:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1476:174:0",
             "stateMutability": "view",
             "superFunction": null,
@@ -3282,7 +3365,7 @@
               "parameters": [],
               "src": "1808:0:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1749:60:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3364,169 +3447,33 @@
               "parameters": [],
               "src": "1984:0:0"
             },
-            "scope": 120,
+            "scope": 127,
             "src": "1932:53:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
-          }
-        ],
-        "scope": 151,
-        "src": "1381:607:0"
-      },
-      {
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "contract",
-        "documentation": null,
-        "fullyImplemented": false,
-        "id": 150,
-        "linearizedBaseContracts": [
-          150
-        ],
-        "name": "IUnderwriterSubsystem",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "body": null,
-            "documentation": null,
-            "id": 125,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "addUnderwriterRequest",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 123,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 122,
-                  "name": "_underwriter",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 125,
-                  "src": "2146:20:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 121,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2146:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2145:22:0"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 124,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2174:0:0"
-            },
-            "scope": 150,
-            "src": "2115:60:0",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
           },
           {
             "body": null,
             "documentation": null,
-            "id": 130,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "changeUnderwriter",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 128,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 127,
-                  "name": "_newUnderwriter",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 130,
-                  "src": "2205:23:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 126,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2205:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2204:25:0"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 129,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2236:0:0"
-            },
-            "scope": 150,
-            "src": "2178:59:0",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 135,
+            "id": 126,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
             "modifiers": [],
-            "name": "getMyUnderwriterRequestsCount",
+            "name": "calculateAllowedPlusOverdraft",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 131,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2344:2:0"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 134,
+              "id": 122,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 133,
-                  "name": "count",
+                  "id": 121,
+                  "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 135,
-                  "src": "2367:10:0",
+                  "scope": 126,
+                  "src": "2029:11:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3534,10 +3481,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 132,
+                    "id": 120,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2367:4:0",
+                    "src": "2029:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -3547,11 +3494,174 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2366:12:0"
+              "src": "2028:13:0"
             },
-            "scope": 150,
-            "src": "2306:73:0",
+            "payable": false,
+            "returnParameters": {
+              "id": 125,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 124,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 126,
+                  "src": "2062:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 123,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2062:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2061:6:0"
+            },
+            "scope": 127,
+            "src": "1990:78:0",
             "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 158,
+        "src": "1381:690:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 157,
+        "linearizedBaseContracts": [
+          157
+        ],
+        "name": "IUnderwriterSubsystem",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 132,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "addUnderwriterRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 130,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 129,
+                  "name": "_underwriter",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 132,
+                  "src": "2229:20:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 128,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2229:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2228:22:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 131,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2257:0:0"
+            },
+            "scope": 157,
+            "src": "2198:60:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 137,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "changeUnderwriter",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 135,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 134,
+                  "name": "_newUnderwriter",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 137,
+                  "src": "2288:23:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 133,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2288:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2287:25:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 136,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2319:0:0"
+            },
+            "scope": 157,
+            "src": "2261:59:0",
+            "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
@@ -3563,40 +3673,13 @@
             "isConstructor": false,
             "isDeclaredConst": true,
             "modifiers": [],
-            "name": "getUnderwriterRequest",
+            "name": "getMyUnderwriterRequestsCount",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 138,
               "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 137,
-                  "name": "_index",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 142,
-                  "src": "2413:11:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 136,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2413:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2412:13:0"
+              "parameters": [],
+              "src": "2427:2:0"
             },
             "payable": false,
             "returnParameters": {
@@ -3606,34 +3689,34 @@
                 {
                   "constant": false,
                   "id": 140,
-                  "name": "sideB",
+                  "name": "count",
                   "nodeType": "VariableDeclaration",
                   "scope": 142,
-                  "src": "2446:13:0",
+                  "src": "2450:10:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
                     "id": 139,
-                    "name": "address",
+                    "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2446:7:0",
+                    "src": "2450:4:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "2445:15:0"
+              "src": "2449:12:0"
             },
-            "scope": 150,
-            "src": "2382:79:0",
+            "scope": 157,
+            "src": "2389:73:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -3644,21 +3727,55 @@
             "id": 149,
             "implemented": false,
             "isConstructor": false,
-            "isDeclaredConst": false,
+            "isDeclaredConst": true,
             "modifiers": [],
-            "name": "acceptUnderwriterRequest",
+            "name": "getUnderwriterRequest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 147,
+              "id": 145,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 144,
-                  "name": "_sideA",
+                  "name": "_index",
                   "nodeType": "VariableDeclaration",
                   "scope": 149,
-                  "src": "2498:14:0",
+                  "src": "2496:11:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 143,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2496:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2495:13:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 148,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 147,
+                  "name": "sideB",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 149,
+                  "src": "2529:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3666,10 +3783,59 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 143,
+                    "id": 146,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2498:7:0",
+                    "src": "2529:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2528:15:0"
+            },
+            "scope": 157,
+            "src": "2465:79:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 156,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "acceptUnderwriterRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 154,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 151,
+                  "name": "_sideA",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 156,
+                  "src": "2581:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 150,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2581:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -3680,11 +3846,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 146,
+                  "id": 153,
                   "name": "_sideB",
                   "nodeType": "VariableDeclaration",
-                  "scope": 149,
-                  "src": "2514:14:0",
+                  "scope": 156,
+                  "src": "2597:14:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3692,10 +3858,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 145,
+                    "id": 152,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2514:7:0",
+                    "src": "2597:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -3705,27 +3871,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2497:32:0"
+              "src": "2580:32:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 148,
+              "id": 155,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2536:0:0"
+              "src": "2619:0:0"
             },
-            "scope": 150,
-            "src": "2464:73:0",
+            "scope": 157,
+            "src": "2547:73:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 151,
-        "src": "1992:548:0"
+        "scope": 158,
+        "src": "2075:548:0"
       }
     ],
-    "src": "0:2544:0"
+    "src": "0:2627:0"
   },
   "compiler": {
     "name": "solc",
@@ -3733,5 +3899,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-08T02:30:26.109Z"
+  "updatedAt": "2018-09-08T16:32:51.085Z"
 }

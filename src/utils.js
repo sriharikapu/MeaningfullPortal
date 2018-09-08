@@ -17,3 +17,11 @@ export const periodToUnit = seconds => {
   let amount = seconds / unit[1];
   return amount > 1 ? `${amount} ${unit[0]}s` : `${unit[0]}`;
 };
+
+export const MILLION = 1000 ** 2;
+export function groupBy(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};

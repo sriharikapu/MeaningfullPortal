@@ -129,7 +129,7 @@ export default class AllowanceForm extends Component {
                   name="periodAmount"
                   id="periodAmount"
                   onChange={this.props.onInputChange}
-                  value={this.props.repeat}
+                  value={this.props.periodAmount}
                   min={1}
                 />
                 <InputGroupAddon addonType="append">

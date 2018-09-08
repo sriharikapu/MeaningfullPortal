@@ -10,9 +10,7 @@ import {
 } from "reactstrap";
 import AllowanceForm from "./Allowance";
 import { utils } from "web3";
-import { unitToPeriod } from "../../utils";
-
-const MILLION = 1000 * 2;
+import { MILLION, unitToPeriod } from "../../utils";
 
 export default class BenefactorModal extends Component {
   state = {
@@ -23,7 +21,7 @@ export default class BenefactorModal extends Component {
     startDate: new Date().toISOString().split("T")[0],
     period: 1,
     periodUnit: "day",
-    repeat: 2
+    periodAmount: 2
   };
 
   constructor(props, context) {
@@ -46,7 +44,7 @@ export default class BenefactorModal extends Component {
       startDate,
       period,
       periodUnit,
-      repeat
+      periodAmount
     } = this.state;
     const withdraw = this.contracts.Ledger.methods
       .allowAndDeposit(
@@ -54,7 +52,7 @@ export default class BenefactorModal extends Component {
         utils.toWei(allowance),
         overdraft * MILLION,
         interest * MILLION,
-        repeat,
+        periodAmount,
         period * unitToPeriod[periodUnit],
         new Date(startDate).getTime() / 1000
       )
