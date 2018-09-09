@@ -1,0 +1,850 @@
+{
+  "contractName": "IVoting",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "voteFromOriginPositive",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_yes",
+          "type": "bool"
+        }
+      ],
+      "name": "vote",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "cancelVoting",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getVotingStats",
+      "outputs": [
+        {
+          "name": "yesResults",
+          "type": "uint256"
+        },
+        {
+          "name": "noResults",
+          "type": "uint256"
+        },
+        {
+          "name": "totalResults",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isFinished",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isYes",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.22;\n\n\n/**\n * @title IVoting \n * @dev The input is binary (yes or no only)\n * The result is binary (yes or no only)\n * Any algorightm inside (1p1v, linear, quadratic, etc)\n*/\ncontract IVoting {\n\t// this should be called right after Voting is created by the creator \n\t// to indicate that he is saying 'YES'\n\tfunction voteFromOriginPositive() public;\n\n\t// _tokenAmount -> if this voting type DOES NOT use tokens -> set to any value (e.g., 0);\n\t// will execute action automatically if the voting is finished \n\tfunction vote(bool _yes) public;\n\n\t// stop the voting\n\tfunction cancelVoting() public;\n\n\t// This is for statistics\n\t// Can get this stats if voting is finished. \n\t// Can get this stats if voting is NOT finished. \n\tfunction getVotingStats() public view returns(uint yesResults, uint noResults, uint totalResults);\n\n\t// Is voting finished?\n\t//\n\t// 1 - First we check if minutesToVote!=0 and time elapsed \n\t// 2 - If not, then we check if at least one of this conditions be met:\n\t//\t\t2.1 - is already finished with yes \n\t//\t\t2.2 - is quorum reached\n\t//\n\t// When isFinished():\n\t// 1 - i can not vote any more\n\t// 2 - i can get results with isYes()\n\tfunction isFinished()public view returns(bool);\n\n\t// The result of voting\n\t// \n\t// At least one of these conditions should be met:\n\t// 1 - time elapsed \n\t// 2 - all these conditions should be met:\n\t//\t\t2.1 - isFinished() \n\t//\t\t2.2 - is quorum reached \n\tfunction isYes()public view returns(bool);\n}\n",
+  "sourcePath": "@thetta/core/contracts/governance/IVoting.sol",
+  "ast": {
+    "absolutePath": "@thetta/core/contracts/governance/IVoting.sol",
+    "exportedSymbols": {
+      "IVoting": [
+        3545
+      ]
+    },
+    "id": 3546,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3514,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".22"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title IVoting \n@dev The input is binary (yes or no only)\nThe result is binary (yes or no only)\nAny algorightm inside (1p1v, linear, quadratic, etc)",
+        "fullyImplemented": false,
+        "id": 3545,
+        "linearizedBaseContracts": [
+          3545
+        ],
+        "name": "IVoting",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3517,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "voteFromOriginPositive",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3515,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "358:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3516,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "367:0:12"
+            },
+            "scope": 3545,
+            "src": "327:41:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3522,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "vote",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3520,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3519,
+                  "name": "_yes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3522,
+                  "src": "541:9:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3518,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "541:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "540:11:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3521,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "558:0:12"
+            },
+            "scope": 3545,
+            "src": "527:32:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3525,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "cancelVoting",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3523,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "603:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3524,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "612:0:12"
+            },
+            "scope": 3545,
+            "src": "582:31:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3534,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getVotingStats",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3526,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "764:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3533,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3528,
+                  "name": "yesResults",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3534,
+                  "src": "787:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3527,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "787:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3530,
+                  "name": "noResults",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3534,
+                  "src": "804:14:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3529,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "804:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3532,
+                  "name": "totalResults",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3534,
+                  "src": "820:17:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3531,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "820:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "786:52:12"
+            },
+            "scope": 3545,
+            "src": "741:98:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3539,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isFinished",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3535,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1191:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3538,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3537,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3539,
+                  "src": "1213:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3536,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1213:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1212:6:12"
+            },
+            "scope": 3545,
+            "src": "1172:47:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3544,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isYes",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3540,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1439:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3543,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3542,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3544,
+                  "src": "1461:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3541,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1461:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1460:6:12"
+            },
+            "scope": 3545,
+            "src": "1425:42:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3546,
+        "src": "195:1274:12"
+      }
+    ],
+    "src": "0:1470:12"
+  },
+  "legacyAST": {
+    "absolutePath": "@thetta/core/contracts/governance/IVoting.sol",
+    "exportedSymbols": {
+      "IVoting": [
+        3545
+      ]
+    },
+    "id": 3546,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3514,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".22"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title IVoting \n@dev The input is binary (yes or no only)\nThe result is binary (yes or no only)\nAny algorightm inside (1p1v, linear, quadratic, etc)",
+        "fullyImplemented": false,
+        "id": 3545,
+        "linearizedBaseContracts": [
+          3545
+        ],
+        "name": "IVoting",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3517,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "voteFromOriginPositive",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3515,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "358:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3516,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "367:0:12"
+            },
+            "scope": 3545,
+            "src": "327:41:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3522,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "vote",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3520,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3519,
+                  "name": "_yes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3522,
+                  "src": "541:9:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3518,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "541:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "540:11:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3521,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "558:0:12"
+            },
+            "scope": 3545,
+            "src": "527:32:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3525,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "cancelVoting",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3523,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "603:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3524,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "612:0:12"
+            },
+            "scope": 3545,
+            "src": "582:31:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3534,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getVotingStats",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3526,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "764:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3533,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3528,
+                  "name": "yesResults",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3534,
+                  "src": "787:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3527,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "787:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3530,
+                  "name": "noResults",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3534,
+                  "src": "804:14:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3529,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "804:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3532,
+                  "name": "totalResults",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3534,
+                  "src": "820:17:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3531,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "820:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "786:52:12"
+            },
+            "scope": 3545,
+            "src": "741:98:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3539,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isFinished",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3535,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1191:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3538,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3537,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3539,
+                  "src": "1213:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3536,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1213:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1212:6:12"
+            },
+            "scope": 3545,
+            "src": "1172:47:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3544,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isYes",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3540,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1439:2:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3543,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3542,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3544,
+                  "src": "1461:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3541,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1461:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1460:6:12"
+            },
+            "scope": 3545,
+            "src": "1425:42:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3546,
+        "src": "195:1274:12"
+      }
+    ],
+    "src": "0:1470:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-09-08T22:00:56.405Z"
+}

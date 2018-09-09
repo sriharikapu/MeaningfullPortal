@@ -50,7 +50,7 @@ class Payer extends Component {
       JSON.stringify({ props: nextProps, state: nextState }) !==
       JSON.stringify({ props: this.props, state: this.state });
     if (different) {
-      debugger;
+      //debugger;
     }
     return different;
   }

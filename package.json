@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dharmaprotocol/contracts": "^0.1.13",
+    "@dharmaprotocol/dharma.js": "^0.1.66",
     "bootstrap": "^4.1.3",
     "dot-prop": "^4.2.0",
     "drizzle": "^1.2.3",

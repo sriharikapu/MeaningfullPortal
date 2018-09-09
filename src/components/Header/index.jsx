@@ -32,15 +32,15 @@ export default class Header extends Component {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <Link to="/payee" className="nav-link">
-                Payee
+                Receive
               </Link>
             </NavItem>
             <NavItem>
               <Link to="/payer" className="nav-link">
-                Payer
+                Send
               </Link>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
+            {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options
               </DropdownToggle>
@@ -50,7 +50,7 @@ export default class Header extends Component {
                 <DropdownItem divider />
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown> */}
           </Nav>
         </Collapse>
       </Navbar>
