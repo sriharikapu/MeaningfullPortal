@@ -19,6 +19,7 @@ import { Text } from "../../components/Styled/index";
 import { groupBy, MILLION, periodToUnit } from "../../utils";
 import BenefactorModal from "./BenefactorModal";
 import {
+  Heading,
   PaymentLine,
   Section,
   StickyPeriodHeader
@@ -112,21 +113,24 @@ class Payer extends Component {
     return (
       <div>
         <Section>
-          <Container>
-            <Row>
+          <Container fluid>
+            <Row className="h-100 justify-content-center align-items-center">
               <Col sm={9}>
-                <h1 className="display-3">Welcome Payer!</h1>
+                <Heading className="display-3">Create an ongoing payment</Heading>
               </Col>
               <Col sm={3}>
                 <Button
                   onClick={this.toggleBenefactorModal}
                   color="primary"
                   block
+                  style={{height: "50px"}}
                 >
-                  Add Benefactor
+                  Create Allowance
                 </Button>
               </Col>
             </Row>
+          </Container>
+          <Container>
             <Row>
               <Col md="6">
                 <Card body inverse color="info">
@@ -172,7 +176,7 @@ class Payer extends Component {
                   periodSeconds,
                   date
                 }) => (
-                  <Row key={sideB + amountEther + date}>
+                  <Row key={sideB + amountEther + date} className="h-100 justify-content-center align-items-center">
                     <Col md={2}>
                       <span className="display-4">
                         {moment(date).format("Do")}
@@ -225,7 +229,7 @@ class Payer extends Component {
                   periodSeconds,
                   date
                 }) => (
-                  <Row key={sideB + amountEther + date}>
+                  <Row key={sideB + amountEther + date} className="h-100 justify-content-center align-items-center">
                     <Col md={2}>
                       <span className="display-4">
                         {moment(date).format("Do")}

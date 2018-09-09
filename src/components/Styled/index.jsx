@@ -24,3 +24,7 @@ export const Section = styled.div`
 export const Text = styled.p`
   color: black;
 `;
+
+export const Heading = styled.h1`
+  margin-bottom: 25px;
+`;
