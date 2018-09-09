@@ -11,6 +11,7 @@ import {
   UncontrolledDropdown
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import logo from "../../logo.svg";
 
 export default class Header extends Component {
   state = {
@@ -23,34 +24,24 @@ export default class Header extends Component {
 
   render() {
     return (
-      <Navbar color="light" light expand="md">
+      <Navbar color="secondary" light expand="md">
         <Link to="/" className="navbar-brand">
-          Direct Debit
+          <img src={logo} alt={"Pully"} />
+          Pully
         </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
               <Link to="/payee" className="nav-link">
-                Payee
+                Get paid
               </Link>
             </NavItem>
             <NavItem>
               <Link to="/payer" className="nav-link">
-                Payer
+                Issue allowances
               </Link>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
         </Collapse>
       </Navbar>

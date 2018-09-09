@@ -1,12 +1,13 @@
 {
-  "name": "ddirect",
-  "version": "0.1.0",
+  "name": "pully",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",
     "dot-prop": "^4.2.0",
     "drizzle": "^1.2.3",
     "drizzle-react": "^1.2.0",
+    "is-obj": "^1.0.1",
     "moment": "^2.22.2",
     "node-sass-chokidar": "^1.3.3",
     "prop-types": "^15.6.2",
@@ -26,11 +27,15 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "surge": "surge ./build --domain https://pully.surge.sh",
+    "deploy": "npm-run-all build surge"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.0.0",
     "babel-plugin-styled-components": "^1.6.4",
     "npm-run-all": "^4.1.3",
-    "prettier": "1.14.2"
+    "prettier": "1.14.2",
+    "surge": "^0.20.1"
   }
 }

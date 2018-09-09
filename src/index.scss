@@ -1,6 +1,39 @@
 // Bootstrap Variables overrides comes here
 
 $enable-rounded: false;
+
+// Brand Colors
+$blue: #007bff;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #cb4545;
+$orange: #fd7e14;
+$yellow: #f9de10;
+$green: #3fb13e;
+$teal: #20c997;
+$cyan: #10acf9;
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+$grays: (100: $gray-100, 200: $gray-200, 300: $gray-300, 400: $gray-400, 500: $gray-500, 600: $gray-600, 700: $gray-700, 800: $gray-800, 900: $gray-900);
+$theme-colors: (primary: #b1523e, secondary: #f9b310, success: $green, info: $cyan, warning: $yellow, danger: $red, light: $gray-100, dark: $gray-800);
+$colors: (blue: $blue, indigo: $indigo, purple: $purple, pink: $pink, red: $red, orange: $orange, yellow: $yellow, green: $green, teal: $teal, cyan: $cyan, white: $white, gray: $gray-600,gray-dark: $gray-800);
+$theme-color-interval: 8%;
+
+
+// Body
+//$body-bg: #af9093;
+//$body-color: $gray-200;
+
 // End of bootstrap themeing, loading bootstrap.
 @import "node_modules/bootstrap/scss/bootstrap";
 // Styling

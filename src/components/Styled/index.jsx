@@ -16,15 +16,16 @@ export const PaymentLine = styled.div`
 `;
 export const LatePaymentLine = styled(PaymentLine)``;
 
-export const Section = styled.div`
-  padding: 30px 10px;
-  background: #ccc;
-`;
-
 export const Text = styled.p`
   color: black;
 `;
 
+export const Section = styled.div`
+  padding: 30px 10px;
+  background: #58171d;
+  color: #fff;
+`;
+
 export const Heading = styled.h1`
-  margin-bottom: 25px;
+  margin-bottom: 40px;
 `;

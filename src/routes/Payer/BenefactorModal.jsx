@@ -65,7 +65,7 @@ export default class BenefactorModal extends Component {
 
     return (
       <Modal isOpen={open} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Add a new benefactor</ModalHeader>
+        <ModalHeader toggle={toggle}>Issue Allowance</ModalHeader>
         <Form onSubmit={this.addBenefactor}>
           <ModalBody>
             <AllowanceForm
@@ -75,7 +75,7 @@ export default class BenefactorModal extends Component {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" type="submit">
-              Allow
+              Create
             </Button>{" "}
             <Button color="warning" onClick={toggle}>
               Cancel

@@ -7,6 +7,7 @@ import AllowanceForm from "./routes/Payer/Allowance";
 import Home from "./routes/Home";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
               />
               <Route exact path="/payer/allowance" component={AllowanceForm} />
             </div>
+            <Footer />
           </div>
         </Router>
       </Loading>

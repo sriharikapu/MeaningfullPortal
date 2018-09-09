@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { get } from "dot-prop";
+import { get } from "../../utils/dot-prop";
 import PropTypes from "prop-types";
 import { drizzleConnect } from "drizzle-react";
 import moment from "moment";
@@ -130,7 +130,7 @@ class Payee extends Component {
           <Container>
             <Row className="h-100 justify-content-center align-items-center">
               <Col md="6">
-                <Card body inverse color="info">
+                <Card body inverse color="primary">
                   <CardTitle>{myAllowancesCount} Allowances</CardTitle>
                   <CardText className="text-center">
                     <span className="display-4">
@@ -143,7 +143,7 @@ class Payee extends Component {
                 </Card>
               </Col>
               <Col md="6">
-                <Card body inverse color={debt.length ? "danger" : "info"}>
+                <Card body inverse color={debt.length ? "danger" : "secondary"}>
                   <CardTitle>{debt.length} Debt</CardTitle>
                   <CardText className="text-center">
                     <span className="display-4">
@@ -159,7 +159,7 @@ class Payee extends Component {
           </Container>
         </Section>
 
-        <Container>
+        <Container style={{minHeight: "50vh"}}>
           {!!debt.length && (
             <Fragment>
               <StickyPeriodHeader>

@@ -41,42 +41,57 @@ export default class AllowanceForm extends Component {
         </FormGroup>
         <FormGroup>
           <Label for="allowance">Allowance</Label>
-          <input
-            className="form-control"
-            type="number"
-            step="0.000001"
-            name="allowance"
-            id="allowance"
-            onChange={this.props.onInputChange}
-            value={this.props.allowance}
-            min={0}
-          />
+          <InputGroup>
+            <input
+              className="form-control"
+              type="number"
+              step="0.000001"
+              name="allowance"
+              id="allowance"
+              onChange={this.props.onInputChange}
+              value={this.props.allowance}
+              min={0}
+            />
+            <InputGroupAddon addonType="append">
+              <CapitalizedInputText>ETH</CapitalizedInputText>
+            </InputGroupAddon>
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label for="overdraft">Overdraft</Label>
-          <input
-            className="form-control"
-            type="number"
-            name="overdraft"
-            id="overdraft"
-            step="0.001"
-            onChange={this.props.onInputChange}
-            value={this.props.overdraft}
-            min={0}
-          />
+          <InputGroup>
+            <input
+              className="form-control"
+              type="number"
+              name="overdraft"
+              id="overdraft"
+              step="0.001"
+              onChange={this.props.onInputChange}
+              value={this.props.overdraft}
+              min={0}
+            />
+            <InputGroupAddon addonType="append">
+              <CapitalizedInputText>%</CapitalizedInputText>
+            </InputGroupAddon>
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Label for="interest">Interest Rate</Label>
-          <input
-            className="form-control"
-            type="number"
-            name="interest"
-            id="interest"
-            step="0.001"
-            onChange={this.props.onInputChange}
-            value={this.props.interest}
-            min={0}
-          />
+          <InputGroup>
+            <input
+              className="form-control"
+              type="number"
+              name="interest"
+              id="interest"
+              step="0.001"
+              onChange={this.props.onInputChange}
+              value={this.props.interest}
+              min={0}
+            />
+            <InputGroupAddon addonType="append">
+              <CapitalizedInputText>%</CapitalizedInputText>
+            </InputGroupAddon>
+          </InputGroup>
         </FormGroup>
         <FormGroup>
           <Row>
@@ -122,7 +137,7 @@ export default class AllowanceForm extends Component {
               </InputGroup>
             </Col>
             <Col>
-              <Label for="periodAmount">For</Label>
+              <Label for="periodAmount">Repeat</Label>
               <InputGroup>
                 <input
                   className="form-control"
@@ -135,7 +150,8 @@ export default class AllowanceForm extends Component {
                 />
                 <InputGroupAddon addonType="append">
                   <CapitalizedInputText>
-                    {this.props.periodUnit}
+                    {"* "}{this.props.period} {this.props.periodUnit}
+                    {this.props.period > 1 ? "s" : ""}
                   </CapitalizedInputText>
                 </InputGroupAddon>
               </InputGroup>

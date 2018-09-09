@@ -24,7 +24,7 @@ import {
   Section,
   StickyPeriodHeader
 } from "../../components/Styled";
-import { get } from "dot-prop";
+import { get } from "../../utils/dot-prop";
 import PropTypes from "prop-types";
 import { drizzleConnect } from "drizzle-react";
 import moment from "moment";
@@ -116,14 +116,16 @@ class Payer extends Component {
           <Container fluid>
             <Row className="h-100 justify-content-center align-items-center">
               <Col sm={9}>
-                <Heading className="display-3">Create an ongoing payment</Heading>
+                <Heading className="display-3">
+                  Create an ongoing payment
+                </Heading>
               </Col>
               <Col sm={3}>
                 <Button
                   onClick={this.toggleBenefactorModal}
                   color="primary"
                   block
-                  style={{height: "50px"}}
+                  style={{ height: "50px" }}
                 >
                   Create Allowance
                 </Button>
@@ -133,7 +135,7 @@ class Payer extends Component {
           <Container>
             <Row>
               <Col md="6">
-                <Card body inverse color="info">
+                <Card body inverse color="primary">
                   <CardTitle>{myAllowancesCount} Allowances</CardTitle>
                   <CardText className="text-center">
                     <span className="display-4">
@@ -146,7 +148,7 @@ class Payer extends Component {
                 </Card>
               </Col>
               <Col md="6">
-                <Card body inverse color={debt.length ? "danger" : "info"}>
+                <Card body inverse color={debt.length ? "danger" : "secondary"}>
                   <CardTitle>{debt.length} Debt</CardTitle>
                   <CardText className="text-center">
                     <span className="display-4">
@@ -161,7 +163,7 @@ class Payer extends Component {
             </Row>
           </Container>
         </Section>
-        <Container>
+        <Container style={{minHeight: "50vh"}} >
           {!!debt.length && (
             <Fragment>
               <StickyPeriodHeader>
@@ -176,7 +178,10 @@ class Payer extends Component {
                   periodSeconds,
                   date
                 }) => (
-                  <Row key={sideB + amountEther + date} className="h-100 justify-content-center align-items-center">
+                  <Row
+                    key={sideB + amountEther + date}
+                    className="h-100 justify-content-center align-items-center"
+                  >
                     <Col md={2}>
                       <span className="display-4">
                         {moment(date).format("Do")}
@@ -229,7 +234,10 @@ class Payer extends Component {
                   periodSeconds,
                   date
                 }) => (
-                  <Row key={sideB + amountEther + date} className="h-100 justify-content-center align-items-center">
+                  <Row
+                    key={sideB + amountEther + date}
+                    className="h-100 justify-content-center align-items-center"
+                  >
                     <Col md={2}>
                       <span className="display-4">
                         {moment(date).format("Do")}
