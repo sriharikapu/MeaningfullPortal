@@ -58,19 +58,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.22;\n\n/**\n * @title ITokenVotingSupport \n * @dev Token that supports this interface will not lock token transfers if voting is started.\n * Instead, it will preserve balances automatically.\n *\n * Example of usage:\n *\n *\t  contract StdDaoToken {}; \n *   StdDaoToken token;\n *\n *\t  token.mintFor(ADDRESS_A, 100);\n *   assert.equal(token.balanceOf(ADDRESS_A), 100);\n *   assert.equal(token.balanceOf(ADDRESS_B), 0);\n *\n *   uint  votingID_1 = token.startVoting();\n *\t  token.transfer(ADDRESS_A, ADDRESS_B, 30);\n *\n *\t  assert.equal(token.balanceOf(ADDRESS_A), 70);\n *\t  assert.equal(token.balanceOf(ADDRESS_B), 30);\n *\n *\t  assert.equal(token.getBalanceAtVoting(votingID_1, ADDRESS_A), 100);\n *\t  assert.equal(token.getBalanceAtVoting(votingID_1, ADDRESS_B), 0);\n*/\ninterface ITokenVotingSupport {\n\t// can throw if 20 votings are already started\n\tfunction startNewVoting() external returns(uint);\n\n\tfunction finishVoting(uint _votingID) external;\n\n\tfunction getBalanceAtVoting(uint _votingID, address _owner) external view returns (uint256);\n}\n\n",
-  "sourcePath": "@thetta\\core\\contracts\\tokens\\ITokenVotingSupport.sol",
+  "sourcePath": "@thetta/core/contracts/tokens/ITokenVotingSupport.sol",
   "ast": {
     "absolutePath": "@thetta/core/contracts/tokens/ITokenVotingSupport.sol",
     "exportedSymbols": {
       "ITokenVotingSupport": [
-        5363
+        5381
       ]
     },
-    "id": 5364,
+    "id": 5382,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5343,
+        "id": 5361,
         "literals": [
           "solidity",
           "^",
@@ -86,9 +86,9 @@
         "contractKind": "interface",
         "documentation": "@title ITokenVotingSupport \n@dev Token that supports this interface will not lock token transfers if voting is started.\nInstead, it will preserve balances automatically.\n * Example of usage:\n *\t  contract StdDaoToken {}; \n  StdDaoToken token;\n *\t  token.mintFor(ADDRESS_A, 100);\n  assert.equal(token.balanceOf(ADDRESS_A), 100);\n  assert.equal(token.balanceOf(ADDRESS_B), 0);\n *   uint  votingID_1 = token.startVoting();\n  token.transfer(ADDRESS_A, ADDRESS_B, 30);\n *\t  assert.equal(token.balanceOf(ADDRESS_A), 70);\n  assert.equal(token.balanceOf(ADDRESS_B), 30);\n *\t  assert.equal(token.getBalanceAtVoting(votingID_1, ADDRESS_A), 100);\n  assert.equal(token.getBalanceAtVoting(votingID_1, ADDRESS_B), 0);",
         "fullyImplemented": false,
-        "id": 5363,
+        "id": 5381,
         "linearizedBaseContracts": [
-          5363
+          5381
         ],
         "name": "ITokenVotingSupport",
         "nodeType": "ContractDefinition",
@@ -96,7 +96,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5348,
+            "id": 5366,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -104,22 +104,22 @@
             "name": "startNewVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5344,
+              "id": 5362,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "886:2:17"
             },
             "payable": false,
             "returnParameters": {
-              "id": 5347,
+              "id": 5365,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5346,
+                  "id": 5364,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5348,
+                  "scope": 5366,
                   "src": "906:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -128,7 +128,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5345,
+                    "id": 5363,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "906:4:17",
@@ -143,7 +143,7 @@
               ],
               "src": "905:6:17"
             },
-            "scope": 5363,
+            "scope": 5381,
             "src": "863:49:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -152,7 +152,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5353,
+            "id": 5371,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -160,15 +160,15 @@
             "name": "finishVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5351,
+              "id": 5369,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5350,
+                  "id": 5368,
                   "name": "_votingID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5353,
+                  "scope": 5371,
                   "src": "937:14:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -177,7 +177,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5349,
+                    "id": 5367,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "937:4:17",
@@ -194,12 +194,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 5352,
+              "id": 5370,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "961:0:17"
             },
-            "scope": 5363,
+            "scope": 5381,
             "src": "915:47:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -208,7 +208,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5362,
+            "id": 5380,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -216,15 +216,15 @@
             "name": "getBalanceAtVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5358,
+              "id": 5376,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5355,
+                  "id": 5373,
                   "name": "_votingID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5362,
+                  "scope": 5380,
                   "src": "993:14:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -233,7 +233,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5354,
+                    "id": 5372,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "993:4:17",
@@ -247,10 +247,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5357,
+                  "id": 5375,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5362,
+                  "scope": 5380,
                   "src": "1009:14:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -259,7 +259,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5356,
+                    "id": 5374,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1009:7:17",
@@ -276,15 +276,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 5361,
+              "id": 5379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5360,
+                  "id": 5378,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5362,
+                  "scope": 5380,
                   "src": "1048:7:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -293,7 +293,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5359,
+                    "id": 5377,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1048:7:17",
@@ -308,14 +308,14 @@
               ],
               "src": "1047:9:17"
             },
-            "scope": 5363,
+            "scope": 5381,
             "src": "965:92:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5364,
+        "scope": 5382,
         "src": "782:277:17"
       }
     ],
@@ -325,14 +325,14 @@
     "absolutePath": "@thetta/core/contracts/tokens/ITokenVotingSupport.sol",
     "exportedSymbols": {
       "ITokenVotingSupport": [
-        5363
+        5381
       ]
     },
-    "id": 5364,
+    "id": 5382,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5343,
+        "id": 5361,
         "literals": [
           "solidity",
           "^",
@@ -348,9 +348,9 @@
         "contractKind": "interface",
         "documentation": "@title ITokenVotingSupport \n@dev Token that supports this interface will not lock token transfers if voting is started.\nInstead, it will preserve balances automatically.\n * Example of usage:\n *\t  contract StdDaoToken {}; \n  StdDaoToken token;\n *\t  token.mintFor(ADDRESS_A, 100);\n  assert.equal(token.balanceOf(ADDRESS_A), 100);\n  assert.equal(token.balanceOf(ADDRESS_B), 0);\n *   uint  votingID_1 = token.startVoting();\n  token.transfer(ADDRESS_A, ADDRESS_B, 30);\n *\t  assert.equal(token.balanceOf(ADDRESS_A), 70);\n  assert.equal(token.balanceOf(ADDRESS_B), 30);\n *\t  assert.equal(token.getBalanceAtVoting(votingID_1, ADDRESS_A), 100);\n  assert.equal(token.getBalanceAtVoting(votingID_1, ADDRESS_B), 0);",
         "fullyImplemented": false,
-        "id": 5363,
+        "id": 5381,
         "linearizedBaseContracts": [
-          5363
+          5381
         ],
         "name": "ITokenVotingSupport",
         "nodeType": "ContractDefinition",
@@ -358,7 +358,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5348,
+            "id": 5366,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -366,22 +366,22 @@
             "name": "startNewVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5344,
+              "id": 5362,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "886:2:17"
             },
             "payable": false,
             "returnParameters": {
-              "id": 5347,
+              "id": 5365,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5346,
+                  "id": 5364,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5348,
+                  "scope": 5366,
                   "src": "906:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -390,7 +390,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5345,
+                    "id": 5363,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "906:4:17",
@@ -405,7 +405,7 @@
               ],
               "src": "905:6:17"
             },
-            "scope": 5363,
+            "scope": 5381,
             "src": "863:49:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -414,7 +414,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5353,
+            "id": 5371,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -422,15 +422,15 @@
             "name": "finishVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5351,
+              "id": 5369,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5350,
+                  "id": 5368,
                   "name": "_votingID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5353,
+                  "scope": 5371,
                   "src": "937:14:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -439,7 +439,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5349,
+                    "id": 5367,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "937:4:17",
@@ -456,12 +456,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 5352,
+              "id": 5370,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "961:0:17"
             },
-            "scope": 5363,
+            "scope": 5381,
             "src": "915:47:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -470,7 +470,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5362,
+            "id": 5380,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -478,15 +478,15 @@
             "name": "getBalanceAtVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5358,
+              "id": 5376,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5355,
+                  "id": 5373,
                   "name": "_votingID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5362,
+                  "scope": 5380,
                   "src": "993:14:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -495,7 +495,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5354,
+                    "id": 5372,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "993:4:17",
@@ -509,10 +509,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5357,
+                  "id": 5375,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5362,
+                  "scope": 5380,
                   "src": "1009:14:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -521,7 +521,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5356,
+                    "id": 5374,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1009:7:17",
@@ -538,15 +538,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 5361,
+              "id": 5379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5360,
+                  "id": 5378,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5362,
+                  "scope": 5380,
                   "src": "1048:7:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -555,7 +555,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5359,
+                    "id": 5377,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1048:7:17",
@@ -570,14 +570,14 @@
               ],
               "src": "1047:9:17"
             },
-            "scope": 5363,
+            "scope": 5381,
             "src": "965:92:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5364,
+        "scope": 5382,
         "src": "782:277:17"
       }
     ],
@@ -589,5 +589,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-09T07:34:55.778Z"
+  "updatedAt": "2018-09-09T10:03:55.737Z"
 }

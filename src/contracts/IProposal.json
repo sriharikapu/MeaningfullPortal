@@ -30,19 +30,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.22;\n\nimport \"./IVoting.sol\";\nimport \"../IDaoBase.sol\";\n\n\n/**\n * @title IProposal \n * @dev This is the basic DAO Proposal interface. Each Proposal should have voting attached. \n * Proposal can do some action if voting is finished with 'yes' result. Or action can be empty. \n*/\ncontract IProposal {\n\tfunction action()public;\n\tfunction getVoting()public view returns(IVoting voting);\n\n\t// ???\n\t// function isOpen() public constant returns(bool);\n}\n\n",
-  "sourcePath": "@thetta\\core\\contracts\\governance\\IProposal.sol",
+  "sourcePath": "@thetta/core/contracts/governance/IProposal.sol",
   "ast": {
     "absolutePath": "@thetta/core/contracts/governance/IProposal.sol",
     "exportedSymbols": {
       "IProposal": [
-        4955
+        4973
       ]
     },
-    "id": 4956,
+    "id": 4974,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4944,
+        "id": 4962,
         "literals": [
           "solidity",
           "^",
@@ -55,10 +55,10 @@
       {
         "absolutePath": "@thetta/core/contracts/governance/IVoting.sol",
         "file": "./IVoting.sol",
-        "id": 4945,
+        "id": 4963,
         "nodeType": "ImportDirective",
-        "scope": 4956,
-        "sourceUnit": 4989,
+        "scope": 4974,
+        "sourceUnit": 5007,
         "src": "26:23:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -66,10 +66,10 @@
       {
         "absolutePath": "@thetta/core/contracts/IDaoBase.sol",
         "file": "../IDaoBase.sol",
-        "id": 4946,
+        "id": 4964,
         "nodeType": "ImportDirective",
-        "scope": 4956,
-        "sourceUnit": 4935,
+        "scope": 4974,
+        "sourceUnit": 4953,
         "src": "50:25:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -80,9 +80,9 @@
         "contractKind": "contract",
         "documentation": "@title IProposal \n@dev This is the basic DAO Proposal interface. Each Proposal should have voting attached. \nProposal can do some action if voting is finished with 'yes' result. Or action can be empty. ",
         "fullyImplemented": false,
-        "id": 4955,
+        "id": 4973,
         "linearizedBaseContracts": [
-          4955
+          4973
         ],
         "name": "IProposal",
         "nodeType": "ContractDefinition",
@@ -90,7 +90,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4949,
+            "id": 4967,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -98,19 +98,19 @@
             "name": "action",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4947,
+              "id": 4965,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "334:2:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4948,
+              "id": 4966,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "342:0:14"
             },
-            "scope": 4955,
+            "scope": 4973,
             "src": "319:24:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -119,7 +119,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4954,
+            "id": 4972,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -127,38 +127,38 @@
             "name": "getVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4950,
+              "id": 4968,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "363:2:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4953,
+              "id": 4971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4952,
+                  "id": 4970,
                   "name": "voting",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4954,
+                  "scope": 4972,
                   "src": "385:14:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IVoting_$4988",
+                    "typeIdentifier": "t_contract$_IVoting_$5006",
                     "typeString": "contract IVoting"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4951,
+                    "id": 4969,
                     "name": "IVoting",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 4988,
+                    "referencedDeclaration": 5006,
                     "src": "385:7:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IVoting_$4988",
+                      "typeIdentifier": "t_contract$_IVoting_$5006",
                       "typeString": "contract IVoting"
                     }
                   },
@@ -168,14 +168,14 @@
               ],
               "src": "384:16:14"
             },
-            "scope": 4955,
+            "scope": 4973,
             "src": "345:56:14",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4956,
+        "scope": 4974,
         "src": "297:168:14"
       }
     ],
@@ -185,14 +185,14 @@
     "absolutePath": "@thetta/core/contracts/governance/IProposal.sol",
     "exportedSymbols": {
       "IProposal": [
-        4955
+        4973
       ]
     },
-    "id": 4956,
+    "id": 4974,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4944,
+        "id": 4962,
         "literals": [
           "solidity",
           "^",
@@ -205,10 +205,10 @@
       {
         "absolutePath": "@thetta/core/contracts/governance/IVoting.sol",
         "file": "./IVoting.sol",
-        "id": 4945,
+        "id": 4963,
         "nodeType": "ImportDirective",
-        "scope": 4956,
-        "sourceUnit": 4989,
+        "scope": 4974,
+        "sourceUnit": 5007,
         "src": "26:23:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -216,10 +216,10 @@
       {
         "absolutePath": "@thetta/core/contracts/IDaoBase.sol",
         "file": "../IDaoBase.sol",
-        "id": 4946,
+        "id": 4964,
         "nodeType": "ImportDirective",
-        "scope": 4956,
-        "sourceUnit": 4935,
+        "scope": 4974,
+        "sourceUnit": 4953,
         "src": "50:25:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -230,9 +230,9 @@
         "contractKind": "contract",
         "documentation": "@title IProposal \n@dev This is the basic DAO Proposal interface. Each Proposal should have voting attached. \nProposal can do some action if voting is finished with 'yes' result. Or action can be empty. ",
         "fullyImplemented": false,
-        "id": 4955,
+        "id": 4973,
         "linearizedBaseContracts": [
-          4955
+          4973
         ],
         "name": "IProposal",
         "nodeType": "ContractDefinition",
@@ -240,7 +240,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4949,
+            "id": 4967,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -248,19 +248,19 @@
             "name": "action",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4947,
+              "id": 4965,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "334:2:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4948,
+              "id": 4966,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "342:0:14"
             },
-            "scope": 4955,
+            "scope": 4973,
             "src": "319:24:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -269,7 +269,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4954,
+            "id": 4972,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -277,38 +277,38 @@
             "name": "getVoting",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4950,
+              "id": 4968,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "363:2:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4953,
+              "id": 4971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4952,
+                  "id": 4970,
                   "name": "voting",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4954,
+                  "scope": 4972,
                   "src": "385:14:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IVoting_$4988",
+                    "typeIdentifier": "t_contract$_IVoting_$5006",
                     "typeString": "contract IVoting"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4951,
+                    "id": 4969,
                     "name": "IVoting",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 4988,
+                    "referencedDeclaration": 5006,
                     "src": "385:7:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IVoting_$4988",
+                      "typeIdentifier": "t_contract$_IVoting_$5006",
                       "typeString": "contract IVoting"
                     }
                   },
@@ -318,14 +318,14 @@
               ],
               "src": "384:16:14"
             },
-            "scope": 4955,
+            "scope": 4973,
             "src": "345:56:14",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4956,
+        "scope": 4974,
         "src": "297:168:14"
       }
     ],
@@ -337,5 +337,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-09T07:34:55.776Z"
+  "updatedAt": "2018-09-09T10:03:55.736Z"
 }

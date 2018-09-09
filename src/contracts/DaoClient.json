@@ -37,14 +37,14 @@
     "absolutePath": "@thetta/core/contracts/DaoClient.sol",
     "exportedSymbols": {
       "DaoClient": [
-        4101
+        4119
       ]
     },
-    "id": 4102,
+    "id": 4120,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4040,
+        "id": 4058,
         "literals": [
           "solidity",
           "^",
@@ -57,10 +57,10 @@
       {
         "absolutePath": "@thetta/core/contracts/IDaoBase.sol",
         "file": "./IDaoBase.sol",
-        "id": 4041,
+        "id": 4059,
         "nodeType": "ImportDirective",
-        "scope": 4102,
-        "sourceUnit": 4935,
+        "scope": 4120,
+        "sourceUnit": 4953,
         "src": "26:24:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -68,10 +68,10 @@
       {
         "absolutePath": "@thetta/core/contracts/IDaoObserver.sol",
         "file": "./IDaoObserver.sol",
-        "id": 4042,
+        "id": 4060,
         "nodeType": "ImportDirective",
-        "scope": 4102,
-        "sourceUnit": 4943,
+        "scope": 4120,
+        "sourceUnit": 4961,
         "src": "51:28:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -82,57 +82,57 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 4043,
+              "id": 4061,
               "name": "IDaoObserver",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 4942,
+              "referencedDeclaration": 4960,
               "src": "537:12:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IDaoObserver_$4942",
+                "typeIdentifier": "t_contract$_IDaoObserver_$4960",
                 "typeString": "contract IDaoObserver"
               }
             },
-            "id": 4044,
+            "id": 4062,
             "nodeType": "InheritanceSpecifier",
             "src": "537:12:10"
           }
         ],
         "contractDependencies": [
-          4942
+          4960
         ],
         "contractKind": "contract",
         "documentation": "@title DaoClient, just an easy-to-use wrapper.\n@dev This contract provides you with internal 'dao' variable. \nOnce your DAO controller is upgraded -> all DaoClients will be notified and 'dao' var will be updated automatically.\n * Some contracts like Votings or Auto-callers has 'dao' variable and don't use DaoClient.\nIn this case they will stop working if the controller (DAO) is upgraded (it is as inteded).",
         "fullyImplemented": true,
-        "id": 4101,
+        "id": 4119,
         "linearizedBaseContracts": [
-          4101,
-          4942
+          4119,
+          4960
         ],
         "name": "DaoClient",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4046,
+            "id": 4064,
             "name": "dao",
             "nodeType": "VariableDeclaration",
-            "scope": 4101,
+            "scope": 4119,
             "src": "553:12:10",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IDaoBase_$4934",
+              "typeIdentifier": "t_contract$_IDaoBase_$4952",
               "typeString": "contract IDaoBase"
             },
             "typeName": {
               "contractScope": null,
-              "id": 4045,
+              "id": 4063,
               "name": "IDaoBase",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 4934,
+              "referencedDeclaration": 4952,
               "src": "553:8:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                "typeIdentifier": "t_contract$_IDaoBase_$4952",
                 "typeString": "contract IDaoBase"
               }
             },
@@ -141,7 +141,7 @@
           },
           {
             "body": {
-              "id": 4060,
+              "id": 4078,
               "nodeType": "Block",
               "src": "601:60:10",
               "statements": [
@@ -156,18 +156,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 4053,
+                              "id": 4071,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8515,
+                              "referencedDeclaration": 8533,
                               "src": "631:3:10",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 4054,
+                            "id": 4072,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -183,11 +183,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 4055,
+                            "id": 4073,
                             "name": "_what",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 4048,
+                            "referencedDeclaration": 4066,
                             "src": "643:5:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
@@ -208,32 +208,32 @@
                           ],
                           "expression": {
                             "argumentTypes": null,
-                            "id": 4051,
+                            "id": 4069,
                             "name": "dao",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 4046,
+                            "referencedDeclaration": 4064,
                             "src": "613:3:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                              "typeIdentifier": "t_contract$_IDaoBase_$4952",
                               "typeString": "contract IDaoBase"
                             }
                           },
-                          "id": 4052,
+                          "id": 4070,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "isCanDoAction",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 4898,
+                          "referencedDeclaration": 4916,
                           "src": "613:17:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_address_$_t_bytes32_$returns$_t_bool_$",
                             "typeString": "function (address,bytes32) view external returns (bool)"
                           }
                         },
-                        "id": 4056,
+                        "id": 4074,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -255,21 +255,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 4050,
+                      "id": 4068,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        8518,
-                        8519
+                        8536,
+                        8537
                       ],
-                      "referencedDeclaration": 8518,
+                      "referencedDeclaration": 8536,
                       "src": "605:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 4057,
+                    "id": 4075,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -283,31 +283,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4058,
+                  "id": 4076,
                   "nodeType": "ExpressionStatement",
                   "src": "605:45:10"
                 },
                 {
-                  "id": 4059,
+                  "id": 4077,
                   "nodeType": "PlaceholderStatement",
                   "src": "655:1:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 4061,
+            "id": 4079,
             "name": "isCanDo",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 4049,
+              "id": 4067,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4048,
+                  "id": 4066,
                   "name": "_what",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4061,
+                  "scope": 4079,
                   "src": "586:13:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -316,7 +316,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 4047,
+                    "id": 4065,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "586:7:10",
@@ -336,28 +336,28 @@
           },
           {
             "body": {
-              "id": 4078,
+              "id": 4096,
               "nodeType": "Block",
               "src": "698:57:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 4068,
+                    "id": 4086,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 4066,
+                      "id": 4084,
                       "name": "dao",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4046,
+                      "referencedDeclaration": 4064,
                       "src": "702:3:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
@@ -365,24 +365,24 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 4067,
+                      "id": 4085,
                       "name": "_dao",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4063,
+                      "referencedDeclaration": 4081,
                       "src": "708:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
                     "src": "702:10:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                      "typeIdentifier": "t_contract$_IDaoBase_$4952",
                       "typeString": "contract IDaoBase"
                     }
                   },
-                  "id": 4069,
+                  "id": 4087,
                   "nodeType": "ExpressionStatement",
                   "src": "702:10:10"
                 },
@@ -395,14 +395,14 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 4074,
+                            "id": 4092,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8568,
+                            "referencedDeclaration": 8586,
                             "src": "745:4:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_DaoClient_$4101",
+                              "typeIdentifier": "t_contract$_DaoClient_$4119",
                               "typeString": "contract DaoClient"
                             }
                           }
@@ -410,22 +410,22 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_DaoClient_$4101",
+                              "typeIdentifier": "t_contract$_DaoClient_$4119",
                               "typeString": "contract DaoClient"
                             }
                           ],
-                          "id": 4073,
+                          "id": 4091,
                           "name": "IDaoObserver",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4942,
+                          "referencedDeclaration": 4960,
                           "src": "732:12:10",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_IDaoObserver_$4942_$",
+                            "typeIdentifier": "t_type$_t_contract$_IDaoObserver_$4960_$",
                             "typeString": "type(contract IDaoObserver)"
                           }
                         },
-                        "id": 4075,
+                        "id": 4093,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -435,7 +435,7 @@
                         "nodeType": "FunctionCall",
                         "src": "732:18:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IDaoObserver_$4942",
+                          "typeIdentifier": "t_contract$_IDaoObserver_$4960",
                           "typeString": "contract IDaoObserver"
                         }
                       }
@@ -443,38 +443,38 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_IDaoObserver_$4942",
+                          "typeIdentifier": "t_contract$_IDaoObserver_$4960",
                           "typeString": "contract IDaoObserver"
                         }
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 4070,
+                        "id": 4088,
                         "name": "dao",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4046,
+                        "referencedDeclaration": 4064,
                         "src": "716:3:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                          "typeIdentifier": "t_contract$_IDaoBase_$4952",
                           "typeString": "contract IDaoBase"
                         }
                       },
-                      "id": 4072,
+                      "id": 4090,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addObserver",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 4817,
+                      "referencedDeclaration": 4835,
                       "src": "716:15:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_external_nonpayable$_t_contract$_IDaoObserver_$4942_$returns$__$",
+                        "typeIdentifier": "t_function_external_nonpayable$_t_contract$_IDaoObserver_$4960_$returns$__$",
                         "typeString": "function (contract IDaoObserver) external"
                       }
                     },
-                    "id": 4076,
+                    "id": 4094,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -488,14 +488,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4077,
+                  "id": 4095,
                   "nodeType": "ExpressionStatement",
                   "src": "716:35:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 4079,
+            "id": 4097,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -503,31 +503,31 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4064,
+              "id": 4082,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4063,
+                  "id": 4081,
                   "name": "_dao",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4079,
+                  "scope": 4097,
                   "src": "676:13:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                    "typeIdentifier": "t_contract$_IDaoBase_$4952",
                     "typeString": "contract IDaoBase"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4062,
+                    "id": 4080,
                     "name": "IDaoBase",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 4934,
+                    "referencedDeclaration": 4952,
                     "src": "676:8:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                      "typeIdentifier": "t_contract$_IDaoBase_$4952",
                       "typeString": "contract IDaoBase"
                     }
                   },
@@ -539,12 +539,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 4065,
+              "id": 4083,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "698:0:10"
             },
-            "scope": 4101,
+            "scope": 4119,
             "src": "664:91:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -552,7 +552,7 @@
           },
           {
             "body": {
-              "id": 4099,
+              "id": 4117,
               "nodeType": "Block",
               "src": "983:232:10",
               "statements": [
@@ -566,7 +566,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 4090,
+                        "id": 4108,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -575,18 +575,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 4085,
+                            "id": 4103,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8515,
+                            "referencedDeclaration": 8533,
                             "src": "995:3:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 4086,
+                          "id": 4104,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -607,14 +607,14 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 4088,
+                              "id": 4106,
                               "name": "dao",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 4046,
+                              "referencedDeclaration": 4064,
                               "src": "1017:3:10",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                                "typeIdentifier": "t_contract$_IDaoBase_$4952",
                                 "typeString": "contract IDaoBase"
                               }
                             }
@@ -622,11 +622,11 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                                "typeIdentifier": "t_contract$_IDaoBase_$4952",
                                 "typeString": "contract IDaoBase"
                               }
                             ],
-                            "id": 4087,
+                            "id": 4105,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -639,7 +639,7 @@
                             },
                             "typeName": "address"
                           },
-                          "id": 4089,
+                          "id": 4107,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -667,21 +667,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 4084,
+                      "id": 4102,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        8518,
-                        8519
+                        8536,
+                        8537
                       ],
-                      "referencedDeclaration": 8518,
+                      "referencedDeclaration": 8536,
                       "src": "987:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 4091,
+                    "id": 4109,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -695,28 +695,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4092,
+                  "id": 4110,
                   "nodeType": "ExpressionStatement",
                   "src": "987:35:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 4097,
+                    "id": 4115,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 4093,
+                      "id": 4111,
                       "name": "dao",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4046,
+                      "referencedDeclaration": 4064,
                       "src": "1027:3:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
@@ -727,11 +727,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 4095,
+                          "id": 4113,
                           "name": "_newAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4081,
+                          "referencedDeclaration": 4099,
                           "src": "1042:11:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -746,18 +746,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 4094,
+                        "id": 4112,
                         "name": "IDaoBase",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4934,
+                        "referencedDeclaration": 4952,
                         "src": "1033:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IDaoBase_$4934_$",
+                          "typeIdentifier": "t_type$_t_contract$_IDaoBase_$4952_$",
                           "typeString": "type(contract IDaoBase)"
                         }
                       },
-                      "id": 4096,
+                      "id": 4114,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -767,24 +767,24 @@
                       "nodeType": "FunctionCall",
                       "src": "1033:21:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
                     "src": "1027:27:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                      "typeIdentifier": "t_contract$_IDaoBase_$4952",
                       "typeString": "contract IDaoBase"
                     }
                   },
-                  "id": 4098,
+                  "id": 4116,
                   "nodeType": "ExpressionStatement",
                   "src": "1027:27:10"
                 }
               ]
             },
             "documentation": "@dev If your company is upgraded -> then this will automatically update the current dao.\ndao will point at NEW contract!\n@param _newAddress New controller.",
-            "id": 4100,
+            "id": 4118,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -792,15 +792,15 @@
             "name": "onUpgrade",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4082,
+              "id": 4100,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4081,
+                  "id": 4099,
                   "name": "_newAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4100,
+                  "scope": 4118,
                   "src": "955:19:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -809,7 +809,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4080,
+                    "id": 4098,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "955:7:10",
@@ -826,19 +826,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 4083,
+              "id": 4101,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "983:0:10"
             },
-            "scope": 4101,
+            "scope": 4119,
             "src": "936:279:10",
             "stateMutability": "nonpayable",
-            "superFunction": 4941,
+            "superFunction": 4959,
             "visibility": "public"
           }
         ],
-        "scope": 4102,
+        "scope": 4120,
         "src": "515:702:10"
       }
     ],
@@ -848,14 +848,14 @@
     "absolutePath": "@thetta/core/contracts/DaoClient.sol",
     "exportedSymbols": {
       "DaoClient": [
-        4101
+        4119
       ]
     },
-    "id": 4102,
+    "id": 4120,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4040,
+        "id": 4058,
         "literals": [
           "solidity",
           "^",
@@ -868,10 +868,10 @@
       {
         "absolutePath": "@thetta/core/contracts/IDaoBase.sol",
         "file": "./IDaoBase.sol",
-        "id": 4041,
+        "id": 4059,
         "nodeType": "ImportDirective",
-        "scope": 4102,
-        "sourceUnit": 4935,
+        "scope": 4120,
+        "sourceUnit": 4953,
         "src": "26:24:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -879,10 +879,10 @@
       {
         "absolutePath": "@thetta/core/contracts/IDaoObserver.sol",
         "file": "./IDaoObserver.sol",
-        "id": 4042,
+        "id": 4060,
         "nodeType": "ImportDirective",
-        "scope": 4102,
-        "sourceUnit": 4943,
+        "scope": 4120,
+        "sourceUnit": 4961,
         "src": "51:28:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -893,57 +893,57 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 4043,
+              "id": 4061,
               "name": "IDaoObserver",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 4942,
+              "referencedDeclaration": 4960,
               "src": "537:12:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IDaoObserver_$4942",
+                "typeIdentifier": "t_contract$_IDaoObserver_$4960",
                 "typeString": "contract IDaoObserver"
               }
             },
-            "id": 4044,
+            "id": 4062,
             "nodeType": "InheritanceSpecifier",
             "src": "537:12:10"
           }
         ],
         "contractDependencies": [
-          4942
+          4960
         ],
         "contractKind": "contract",
         "documentation": "@title DaoClient, just an easy-to-use wrapper.\n@dev This contract provides you with internal 'dao' variable. \nOnce your DAO controller is upgraded -> all DaoClients will be notified and 'dao' var will be updated automatically.\n * Some contracts like Votings or Auto-callers has 'dao' variable and don't use DaoClient.\nIn this case they will stop working if the controller (DAO) is upgraded (it is as inteded).",
         "fullyImplemented": true,
-        "id": 4101,
+        "id": 4119,
         "linearizedBaseContracts": [
-          4101,
-          4942
+          4119,
+          4960
         ],
         "name": "DaoClient",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 4046,
+            "id": 4064,
             "name": "dao",
             "nodeType": "VariableDeclaration",
-            "scope": 4101,
+            "scope": 4119,
             "src": "553:12:10",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IDaoBase_$4934",
+              "typeIdentifier": "t_contract$_IDaoBase_$4952",
               "typeString": "contract IDaoBase"
             },
             "typeName": {
               "contractScope": null,
-              "id": 4045,
+              "id": 4063,
               "name": "IDaoBase",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 4934,
+              "referencedDeclaration": 4952,
               "src": "553:8:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                "typeIdentifier": "t_contract$_IDaoBase_$4952",
                 "typeString": "contract IDaoBase"
               }
             },
@@ -952,7 +952,7 @@
           },
           {
             "body": {
-              "id": 4060,
+              "id": 4078,
               "nodeType": "Block",
               "src": "601:60:10",
               "statements": [
@@ -967,18 +967,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 4053,
+                              "id": 4071,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8515,
+                              "referencedDeclaration": 8533,
                               "src": "631:3:10",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 4054,
+                            "id": 4072,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -994,11 +994,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 4055,
+                            "id": 4073,
                             "name": "_what",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 4048,
+                            "referencedDeclaration": 4066,
                             "src": "643:5:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
@@ -1019,32 +1019,32 @@
                           ],
                           "expression": {
                             "argumentTypes": null,
-                            "id": 4051,
+                            "id": 4069,
                             "name": "dao",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 4046,
+                            "referencedDeclaration": 4064,
                             "src": "613:3:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                              "typeIdentifier": "t_contract$_IDaoBase_$4952",
                               "typeString": "contract IDaoBase"
                             }
                           },
-                          "id": 4052,
+                          "id": 4070,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "isCanDoAction",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 4898,
+                          "referencedDeclaration": 4916,
                           "src": "613:17:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_address_$_t_bytes32_$returns$_t_bool_$",
                             "typeString": "function (address,bytes32) view external returns (bool)"
                           }
                         },
-                        "id": 4056,
+                        "id": 4074,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1066,21 +1066,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 4050,
+                      "id": 4068,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        8518,
-                        8519
+                        8536,
+                        8537
                       ],
-                      "referencedDeclaration": 8518,
+                      "referencedDeclaration": 8536,
                       "src": "605:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 4057,
+                    "id": 4075,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1094,31 +1094,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4058,
+                  "id": 4076,
                   "nodeType": "ExpressionStatement",
                   "src": "605:45:10"
                 },
                 {
-                  "id": 4059,
+                  "id": 4077,
                   "nodeType": "PlaceholderStatement",
                   "src": "655:1:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 4061,
+            "id": 4079,
             "name": "isCanDo",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 4049,
+              "id": 4067,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4048,
+                  "id": 4066,
                   "name": "_what",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4061,
+                  "scope": 4079,
                   "src": "586:13:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1127,7 +1127,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 4047,
+                    "id": 4065,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "586:7:10",
@@ -1147,28 +1147,28 @@
           },
           {
             "body": {
-              "id": 4078,
+              "id": 4096,
               "nodeType": "Block",
               "src": "698:57:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 4068,
+                    "id": 4086,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 4066,
+                      "id": 4084,
                       "name": "dao",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4046,
+                      "referencedDeclaration": 4064,
                       "src": "702:3:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
@@ -1176,24 +1176,24 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 4067,
+                      "id": 4085,
                       "name": "_dao",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4063,
+                      "referencedDeclaration": 4081,
                       "src": "708:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
                     "src": "702:10:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                      "typeIdentifier": "t_contract$_IDaoBase_$4952",
                       "typeString": "contract IDaoBase"
                     }
                   },
-                  "id": 4069,
+                  "id": 4087,
                   "nodeType": "ExpressionStatement",
                   "src": "702:10:10"
                 },
@@ -1206,14 +1206,14 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 4074,
+                            "id": 4092,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8568,
+                            "referencedDeclaration": 8586,
                             "src": "745:4:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_DaoClient_$4101",
+                              "typeIdentifier": "t_contract$_DaoClient_$4119",
                               "typeString": "contract DaoClient"
                             }
                           }
@@ -1221,22 +1221,22 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_DaoClient_$4101",
+                              "typeIdentifier": "t_contract$_DaoClient_$4119",
                               "typeString": "contract DaoClient"
                             }
                           ],
-                          "id": 4073,
+                          "id": 4091,
                           "name": "IDaoObserver",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4942,
+                          "referencedDeclaration": 4960,
                           "src": "732:12:10",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_IDaoObserver_$4942_$",
+                            "typeIdentifier": "t_type$_t_contract$_IDaoObserver_$4960_$",
                             "typeString": "type(contract IDaoObserver)"
                           }
                         },
-                        "id": 4075,
+                        "id": 4093,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1246,7 +1246,7 @@
                         "nodeType": "FunctionCall",
                         "src": "732:18:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IDaoObserver_$4942",
+                          "typeIdentifier": "t_contract$_IDaoObserver_$4960",
                           "typeString": "contract IDaoObserver"
                         }
                       }
@@ -1254,38 +1254,38 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_IDaoObserver_$4942",
+                          "typeIdentifier": "t_contract$_IDaoObserver_$4960",
                           "typeString": "contract IDaoObserver"
                         }
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 4070,
+                        "id": 4088,
                         "name": "dao",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4046,
+                        "referencedDeclaration": 4064,
                         "src": "716:3:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                          "typeIdentifier": "t_contract$_IDaoBase_$4952",
                           "typeString": "contract IDaoBase"
                         }
                       },
-                      "id": 4072,
+                      "id": 4090,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addObserver",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 4817,
+                      "referencedDeclaration": 4835,
                       "src": "716:15:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_external_nonpayable$_t_contract$_IDaoObserver_$4942_$returns$__$",
+                        "typeIdentifier": "t_function_external_nonpayable$_t_contract$_IDaoObserver_$4960_$returns$__$",
                         "typeString": "function (contract IDaoObserver) external"
                       }
                     },
-                    "id": 4076,
+                    "id": 4094,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1299,14 +1299,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4077,
+                  "id": 4095,
                   "nodeType": "ExpressionStatement",
                   "src": "716:35:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 4079,
+            "id": 4097,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -1314,31 +1314,31 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4064,
+              "id": 4082,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4063,
+                  "id": 4081,
                   "name": "_dao",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4079,
+                  "scope": 4097,
                   "src": "676:13:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                    "typeIdentifier": "t_contract$_IDaoBase_$4952",
                     "typeString": "contract IDaoBase"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 4062,
+                    "id": 4080,
                     "name": "IDaoBase",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 4934,
+                    "referencedDeclaration": 4952,
                     "src": "676:8:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                      "typeIdentifier": "t_contract$_IDaoBase_$4952",
                       "typeString": "contract IDaoBase"
                     }
                   },
@@ -1350,12 +1350,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 4065,
+              "id": 4083,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "698:0:10"
             },
-            "scope": 4101,
+            "scope": 4119,
             "src": "664:91:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1363,7 +1363,7 @@
           },
           {
             "body": {
-              "id": 4099,
+              "id": 4117,
               "nodeType": "Block",
               "src": "983:232:10",
               "statements": [
@@ -1377,7 +1377,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 4090,
+                        "id": 4108,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1386,18 +1386,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 4085,
+                            "id": 4103,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8515,
+                            "referencedDeclaration": 8533,
                             "src": "995:3:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 4086,
+                          "id": 4104,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1418,14 +1418,14 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 4088,
+                              "id": 4106,
                               "name": "dao",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 4046,
+                              "referencedDeclaration": 4064,
                               "src": "1017:3:10",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                                "typeIdentifier": "t_contract$_IDaoBase_$4952",
                                 "typeString": "contract IDaoBase"
                               }
                             }
@@ -1433,11 +1433,11 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                                "typeIdentifier": "t_contract$_IDaoBase_$4952",
                                 "typeString": "contract IDaoBase"
                               }
                             ],
-                            "id": 4087,
+                            "id": 4105,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1450,7 +1450,7 @@
                             },
                             "typeName": "address"
                           },
-                          "id": 4089,
+                          "id": 4107,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1478,21 +1478,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 4084,
+                      "id": 4102,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        8518,
-                        8519
+                        8536,
+                        8537
                       ],
-                      "referencedDeclaration": 8518,
+                      "referencedDeclaration": 8536,
                       "src": "987:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 4091,
+                    "id": 4109,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1506,28 +1506,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4092,
+                  "id": 4110,
                   "nodeType": "ExpressionStatement",
                   "src": "987:35:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 4097,
+                    "id": 4115,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 4093,
+                      "id": 4111,
                       "name": "dao",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4046,
+                      "referencedDeclaration": 4064,
                       "src": "1027:3:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
@@ -1538,11 +1538,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 4095,
+                          "id": 4113,
                           "name": "_newAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4081,
+                          "referencedDeclaration": 4099,
                           "src": "1042:11:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1557,18 +1557,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 4094,
+                        "id": 4112,
                         "name": "IDaoBase",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4934,
+                        "referencedDeclaration": 4952,
                         "src": "1033:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IDaoBase_$4934_$",
+                          "typeIdentifier": "t_type$_t_contract$_IDaoBase_$4952_$",
                           "typeString": "type(contract IDaoBase)"
                         }
                       },
-                      "id": 4096,
+                      "id": 4114,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1578,24 +1578,24 @@
                       "nodeType": "FunctionCall",
                       "src": "1033:21:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                        "typeIdentifier": "t_contract$_IDaoBase_$4952",
                         "typeString": "contract IDaoBase"
                       }
                     },
                     "src": "1027:27:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDaoBase_$4934",
+                      "typeIdentifier": "t_contract$_IDaoBase_$4952",
                       "typeString": "contract IDaoBase"
                     }
                   },
-                  "id": 4098,
+                  "id": 4116,
                   "nodeType": "ExpressionStatement",
                   "src": "1027:27:10"
                 }
               ]
             },
             "documentation": "@dev If your company is upgraded -> then this will automatically update the current dao.\ndao will point at NEW contract!\n@param _newAddress New controller.",
-            "id": 4100,
+            "id": 4118,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1603,15 +1603,15 @@
             "name": "onUpgrade",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4082,
+              "id": 4100,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4081,
+                  "id": 4099,
                   "name": "_newAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4100,
+                  "scope": 4118,
                   "src": "955:19:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1620,7 +1620,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4080,
+                    "id": 4098,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "955:7:10",
@@ -1637,19 +1637,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 4083,
+              "id": 4101,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "983:0:10"
             },
-            "scope": 4101,
+            "scope": 4119,
             "src": "936:279:10",
             "stateMutability": "nonpayable",
-            "superFunction": 4941,
+            "superFunction": 4959,
             "visibility": "public"
           }
         ],
-        "scope": 4102,
+        "scope": 4120,
         "src": "515:702:10"
       }
     ],
@@ -1661,5 +1661,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-09T07:34:55.773Z"
+  "updatedAt": "2018-09-09T10:03:55.733Z"
 }

@@ -21,19 +21,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.23;\n\n\n/**\n * @title IDaoObserver\n * @dev Adds upgradeabilty to the contracts. Used by the DaoClient \n */\ncontract IDaoObserver {\n\tfunction onUpgrade(address _newAddress) public;\n}\n",
-  "sourcePath": "@thetta\\core\\contracts\\IDaoObserver.sol",
+  "sourcePath": "@thetta/core/contracts/IDaoObserver.sol",
   "ast": {
     "absolutePath": "@thetta/core/contracts/IDaoObserver.sol",
     "exportedSymbols": {
       "IDaoObserver": [
-        4942
+        4960
       ]
     },
-    "id": 4943,
+    "id": 4961,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4936,
+        "id": 4954,
         "literals": [
           "solidity",
           "^",
@@ -49,9 +49,9 @@
         "contractKind": "contract",
         "documentation": "@title IDaoObserver\n@dev Adds upgradeabilty to the contracts. Used by the DaoClient ",
         "fullyImplemented": false,
-        "id": 4942,
+        "id": 4960,
         "linearizedBaseContracts": [
-          4942
+          4960
         ],
         "name": "IDaoObserver",
         "nodeType": "ContractDefinition",
@@ -59,7 +59,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4941,
+            "id": 4959,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -67,15 +67,15 @@
             "name": "onUpgrade",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4939,
+              "id": 4957,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4938,
+                  "id": 4956,
                   "name": "_newAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4941,
+                  "scope": 4959,
                   "src": "170:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -84,7 +84,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4937,
+                    "id": 4955,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "170:7:13",
@@ -101,19 +101,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 4940,
+              "id": 4958,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "197:0:13"
             },
-            "scope": 4942,
+            "scope": 4960,
             "src": "151:47:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4943,
+        "scope": 4961,
         "src": "126:74:13"
       }
     ],
@@ -123,14 +123,14 @@
     "absolutePath": "@thetta/core/contracts/IDaoObserver.sol",
     "exportedSymbols": {
       "IDaoObserver": [
-        4942
+        4960
       ]
     },
-    "id": 4943,
+    "id": 4961,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4936,
+        "id": 4954,
         "literals": [
           "solidity",
           "^",
@@ -146,9 +146,9 @@
         "contractKind": "contract",
         "documentation": "@title IDaoObserver\n@dev Adds upgradeabilty to the contracts. Used by the DaoClient ",
         "fullyImplemented": false,
-        "id": 4942,
+        "id": 4960,
         "linearizedBaseContracts": [
-          4942
+          4960
         ],
         "name": "IDaoObserver",
         "nodeType": "ContractDefinition",
@@ -156,7 +156,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4941,
+            "id": 4959,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -164,15 +164,15 @@
             "name": "onUpgrade",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4939,
+              "id": 4957,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4938,
+                  "id": 4956,
                   "name": "_newAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4941,
+                  "scope": 4959,
                   "src": "170:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -181,7 +181,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4937,
+                    "id": 4955,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "170:7:13",
@@ -198,19 +198,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 4940,
+              "id": 4958,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "197:0:13"
             },
-            "scope": 4942,
+            "scope": 4960,
             "src": "151:47:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4943,
+        "scope": 4961,
         "src": "126:74:13"
       }
     ],
@@ -222,5 +222,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-09T07:34:55.776Z"
+  "updatedAt": "2018-09-09T10:03:55.736Z"
 }
