@@ -101,7 +101,7 @@ class Payee extends Component {
         i
       );
     }
-    allowances = allowances.map(({ startingDate, amountWei, ...item }) => ({
+    allowances = allowances.filter(({ amountWei } ) => amountWei > 0).map(({ startingDate, amountWei, ...item }) => ({
       ...item,
       date: new Date(startingDate * 1000),
       amountEther: utils.fromWei("" + amountWei)
